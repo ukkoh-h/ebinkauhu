@@ -1,6 +1,7 @@
 using UnityEngine;
 //using System.Collections;
 using UnityEngine.AI;
+//lisää  nav mesh actor pelaaja hamolle
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
