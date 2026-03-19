@@ -29,6 +29,7 @@ public class door : MonoBehaviour, IInteractable
             openTime += Time.deltaTime * openSpeedMultiplier /* * openSpeedCurve.Evaluate(openTime)*/;
         }
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, defaultRotationAngle + (open ? doorOpenAngle : 0), openTime), transform.localEulerAngles.z);
+        // aukaisee toiseen suuntaan ---> transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, (defaultRotationAngle + (open ? doorOpenAngle : 0), openTime)) * -1, transform.localEulerAngles.z);
         if (open == true)
         {
             timeOpen ++;

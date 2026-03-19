@@ -6,7 +6,7 @@ interface IInteractable
     public void Interact();
 }
 
-public class Interactor : MonoBehaviour
+public class Interact2 : MonoBehaviour
 {
     public Transform InteractorSource;
     InputAction interact;
@@ -19,19 +19,15 @@ public class Interactor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (interact.IsPressed() && Inter)
-        {
-            Ray r = new(InteractorSource.position, InteractorSource.forward);
-            if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange))
+        if (interact.IsPressed())
+            if (Collider.gameObject.TryGetComponent(out IInteractable interactObj))
             {
-                if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
-                {
-                    interactObj.Interact();
-                }
+                interactObj.Interact();
             }
         }
     }
 }
+/*
 //Make an empty GameObject and call it "Door"
 //Drag and drop your Door model into Scene and rename it to "Body"
 //Make sure that the "Door" Object is at the side of the "Body" object (The place where a Door Hinge should be)
