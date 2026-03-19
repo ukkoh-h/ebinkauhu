@@ -11,18 +11,18 @@ public class Enemy : MonoBehaviour
     public LayerMask groundLayer, playerLayer;
     //public float health;
     //public float walkPointRange;
-    //public float timeBetweenAttacks;
+    public float timeBetweenAttacks;
     public float sightRange;
     /// <summary>
-    //public float attackRange;
+    public float attackRange;
     /// </summary>
     /*public int damage;
     public Animator animator;
     public ParticleSystem hitEffect;*/
 
-    /*
-    private Vector3 walkPoint;
-    private bool walkPointSet;
+    
+    //private Vector3 walkPoint;
+    //private bool walkPointSet;
     private bool alreadyAttacked;
     /*private bool takeDamage;*/
 
@@ -36,20 +36,20 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         bool playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
-        //bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
+        bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
         /*if (!playerInSightRange && !playerInAttackRange)
         {
             Patroling();
         }
-        else*/ if (playerInSightRange /*&& !playerInAttackRange*/)
+        else*/ if (playerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
         }
-        /*else if (playerInAttackRange && playerInSightRange)
+        else if (playerInAttackRange && playerInSightRange)
         {
             AttackPlayer();
-        }*/
+        }
         else if (!playerInSightRange /*&& takeDamage*/)
         {
             ChasePlayer();
@@ -97,11 +97,11 @@ public class Enemy : MonoBehaviour
 }
 
 
-    /*private void AttackPlayer()
+    private void AttackPlayer()
 {
     navAgent.SetDestination(transform.position);
 
-    /*if (!alreadyAttacked)
+    if (!alreadyAttacked)
     {
         transform.LookAt(player.position);
         alreadyAttacked = true;
@@ -120,12 +120,12 @@ public class Enemy : MonoBehaviour
             //   playerHUD.takeDamage(damage);
             //}
              
-        }
+        }*/
     }
-}*/
+}
 
 
-    /*private void ResetAttack()
+    private void ResetAttack()
     {
         alreadyAttacked = false;
         //animator.SetBool("Attack", false);
