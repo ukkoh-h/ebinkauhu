@@ -142,6 +142,12 @@ namespace StarterAssets
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
             float targetTurnSpeed = _input.sprint ? turnSprintSpeed : turnSpeed;
+
+            if (_input.move == Vector2.down || _input.move == Vector2.down && _input.move == Vector2.left || _input.move == Vector2.down && _input.move == Vector2.right) 
+            {
+                targetSpeed = MoveSpeed;
+                targetTurnSpeed = turnSpeed;
+            }
             
             
 
