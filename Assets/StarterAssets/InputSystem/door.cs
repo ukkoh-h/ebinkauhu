@@ -33,13 +33,13 @@ public class door : MonoBehaviour, IInteractable
         if (open == true)
         {
             timeOpen ++;
-        }
-        if (timeOpen > 160)
-        {
-            open = !open;
-            currentRotationAngle = transform.localEulerAngles.y;
-            openTime = 0;
-            timeOpen = 0;
+        if (timeOpen > 320)
+            {
+                open = !open;
+                currentRotationAngle = transform.localEulerAngles.y;
+                openTime = 0;
+                timeOpen = 0;
+            }
         }
     }
     public void Interact()
