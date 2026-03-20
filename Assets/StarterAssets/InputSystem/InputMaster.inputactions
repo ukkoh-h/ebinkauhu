@@ -198,6 +198,28 @@
                 },
                 {
                     "name": "",
+                    "id": "80958be5-bac9-4f21-8887-d80607c1148c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a49f8e70-59ac-4b4e-9bc5-f3a01e43649a",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "69826629-443a-448b-96cc-5d52703a4d12",
                     "path": "<Keyboard>/r",
                     "interactions": "",
