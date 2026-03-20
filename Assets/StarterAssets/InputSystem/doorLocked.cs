@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class door : MonoBehaviour, IInteractable
+public class doorLocked : MonoBehaviour, IInteractable
 {
     //public AnimationCurve openSpeedCurve = new(new Keyframe[] { new(0, 1, 0, 0), new(0.8f, 1, 0, 0), new(1, 0, 0, 0) }); //Contols the open speed at a specific time (ex. the door opens fast at the start then slows down at the end)
     //public AnimationCurve openSpeedCurve = new(new Keyframe[] { new(0, 0, 1, 0), new(0, 0, 1, 0.8f), new(0, 0, 0, 1) }); //Contols the open speed at a specific time (ex. the door opens fast at the start then slows down at the end)
@@ -8,6 +8,7 @@ public class door : MonoBehaviour, IInteractable
     public float doorOpenAngle = 90.0f; //Global door open speed that will multiply the openSpeedCurve
 
     bool open = false;
+    bool _isLocked = true;
     //bool enter = false;
 
     float defaultRotationAngle;
@@ -39,17 +40,26 @@ public class door : MonoBehaviour, IInteractable
                 currentRotationAngle = transform.localEulerAngles.y;
                 openTime = 0;
                 timeOpen = 0;
-                }
+            }
         }
     }
     public void Interact()
     {
+        if (!_isLocked) {
             if (open == false)
             {
                 Debug.Log("OH NO, I GOT INTERACTED!");
                 open = !open;
                 currentRotationAngle = transform.localEulerAngles.y;
-             openTime = 0;
+                openTime = 0;
             }
+        }else
+        {
+            Debug.Log("DOOR'S LOCKED!");
+        }
+    }
+    public void ChangeLocked()
+    {
+        _isLocked = !_isLocked;
     }
 }
