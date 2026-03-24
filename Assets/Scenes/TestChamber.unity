@@ -808,7 +808,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -834,8 +834,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 535592125}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18016265, y: 0.060453054, z: -0.011085376, w: 0.98171484}
-  m_LocalPosition: {x: 16.870377, y: 12.663516, z: -16.40477}
+  m_LocalRotation: {x: -0.024182482, y: -0.18339953, z: -0.00451072, w: 0.9827306}
+  m_LocalPosition: {x: 14.041245, y: 1.860915, z: -1.4336181}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2026,7 +2026,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _doorLocked: {fileID: 1672531359}
-  interactable: 1
 --- !u!1001 &1287439802
 PrefabInstance:
   m_ObjectHideFlags: 0

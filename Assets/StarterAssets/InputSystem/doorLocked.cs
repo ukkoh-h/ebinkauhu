@@ -34,7 +34,7 @@ public class doorLocked : MonoBehaviour, IInteractable
         if (open == true)
         {
             timeOpen ++;
-        if (timeOpen > 160)
+        if (timeOpen > 320)
             {
                 open = !open;
                 currentRotationAngle = transform.localEulerAngles.y;
