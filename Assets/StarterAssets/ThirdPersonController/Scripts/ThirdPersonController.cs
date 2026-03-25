@@ -17,6 +17,9 @@ namespace StarterAssets
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
+        
+        [Tooltip("Reverse move speed of the character in m/s")]
+        public float ReverseSpeed = 1.0f;
 
         [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
@@ -24,8 +27,11 @@ namespace StarterAssets
         [Tooltip("Tank controls turning speed")]
         public float turnSpeed = 180f;
 
-        /* [Tooltip("turning speed while sprinting")]
-        public float turnStaticSpeed = 180f; */
+        [Tooltip("Rverse turning speed")]
+        public float turnReverseSpeed = 90f;
+
+        [Tooltip("turning speed while static")]
+        public float turnStaticSpeed = 180f;
 
         [Tooltip("turning speed while sprinting")]
         public float turnSprintSpeed = 140f;
@@ -143,13 +149,31 @@ namespace StarterAssets
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
             float targetTurnSpeed = _input.sprint ? turnSprintSpeed : turnSpeed;
 
-            if (_input.move == Vector2.down || _input.move == Vector2.down && _input.move == Vector2.left || _input.move == Vector2.down && _input.move == Vector2.right) 
+            Vector2 moveInput = moveAction.ReadValue<Vector2>();
+            float inputHorizontal = moveInput.x;
+            float inputVertical = moveInput.y;
+            if (inputVertical == 0) 
             {
-                targetSpeed = MoveSpeed;
+                targetTurnSpeed = turnStaticSpeed;
+            }
+            if (_input.move == Vector2.down || _input.sprint && inputVertical < 0 || inputHorizontal != 0 && inputVertical < 0 ) 
+            {
+                targetSpeed = ReverseSpeed;
                 targetTurnSpeed = turnSpeed;
             }
-            
-            
+
+            /* float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+            float targetTurnSpeed = _input.sprint ? turnSprintSpeed : turnWalkSpeed;
+
+            Vector2 moveInput = moveAction.ReadValue<Vector2>();
+            float inputHorizontal = moveInput.x;
+            float inputVertical = moveInput.y;
+            if (inputVertical == 0) targetTurnSpeed = turnSpeed;
+            if (_input.move == Vector2.down || _input.sprint && inputVertical < 0 || inputHorizontal != 0 && inputVertical < 0 ) 
+            {
+                targetSpeed = ReverseSpeed;
+                targetTurnSpeed = turnWalkSpeed;
+            } */
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -207,10 +231,6 @@ namespace StarterAssets
 
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude); */
-                Vector2 moveInput = moveAction.ReadValue<Vector2>();
-
-                float inputHorizontal = moveInput.x;
-                float inputVertical = moveInput.y;
 
                 //float targetTurnStaticSpeed = inputVertical? turnStaticSpeed: turnSpeed;
 
@@ -221,22 +241,57 @@ namespace StarterAssets
                 else{
                     
                 } */
-                transform.Rotate(0, inputHorizontal * targetTurnSpeed * Time.deltaTime, 0);
-                Vector3 movDir = transform.forward * inputVertical * targetSpeed;
+                if (_input.sprint) _animationBlend = 5.335f; else _animationBlend = 2.0f;
+                if (inputVertical == 0) 
+            {
+                if (_input.move == Vector2.zero) 
+                {
+                    _animationBlend = 0f;
+                } else {
+                    _animationBlend = 2f;
+                }
 
+                
+
+                _animator.SetFloat(_animIDSpeed, _animationBlend);
+                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+            }
+
+            if (_input.move == Vector2.down || _input.sprint && inputVertical < 0 || inputHorizontal != 0 && inputVertical < 0 ) 
+            {
+                _animationBlend = 1.75f;
+                _animator.SetFloat(_animIDSpeed, _animationBlend);
+                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+            }
+                
+
+                if (_input.move == Vector2.down || inputHorizontal != 0 && inputVertical < 0 ) 
+                    transform.Rotate(0, -inputHorizontal * targetTurnSpeed * Time.deltaTime, 0);
+                else 
+                    transform.Rotate(0, inputHorizontal * targetTurnSpeed * Time.deltaTime, 0);
+                
+                Vector3 movDir = transform.forward * inputVertical * targetSpeed;
+                
                 _controller.Move(movDir * Time.deltaTime - Vector3.up * 0.1f);
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
 
-                /* if (Input.GetKeyDown(KeyCode.S)) // Example input condition
+                /* if (inputVertical < 0) // Example input condition
                 {
                     // Set the target rotation to 180 degrees around the Y axis
                     targetRotation *= Quaternion.Euler(0, 180, 0); 
-                }
+                } */
 
                 // Smoothly interpolate towards the target rotation every frame
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smooth * Time.deltaTime); */
+                //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smooth * Time.deltaTime);
+                if(_input.quickturn)
+                {
+                    //transform.rotation*Quaternion.AngleAxis(180, Vector3.up);
+                    targetRotation*=Quaternion.AngleAxis(180, Vector3.up);
+                    
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotationSmoothTime);
                 }
+        }
 
         private void JumpAndGravity()
         {
