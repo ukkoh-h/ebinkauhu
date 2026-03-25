@@ -10,6 +10,7 @@ namespace StarterAssets
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public bool sprint;
+		public bool quickturn;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -28,6 +29,10 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+		public void OnQuickturn(InputValue value)
+		{
+			QuickturnInput(value.isPressed);
+		}
 #endif
 
 
@@ -39,6 +44,10 @@ namespace StarterAssets
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
+		}
+		public void QuickturnInput(bool newQuickturnState)
+		{
+			quickturn = newQuickturnState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

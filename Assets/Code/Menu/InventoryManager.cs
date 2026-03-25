@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InventoryManager : MonoBehaviour
 {
-    /* private InputMaster controls;
-    public GameObject InnventoryMenu;
+    private InputMaster controls;
+    public GameObject InventoryMenu;
 
     private int ammoLeft;
 
@@ -17,8 +18,8 @@ public class InventoryManager : MonoBehaviour
         readyToOpenMenu = true;
         controls = new InputMaster();
 
-        controls.Player.Inventory.started += ctx => StartMenu();
-        controls.Player.Inventory.canceled += ctx => EndMenu();
+        controls.Player.InventoryOpenClose.started += ctx => StartMenu();
+        controls.Player.InventoryOpenClose.canceled += ctx => EndMenu();
     }
 
     private void Update()
@@ -42,7 +43,7 @@ public class InventoryManager : MonoBehaviour
     private void PerformMenu()
     {
         readyToOpenMenu = false;
-        InnventoryMenu.SetActive(true);
+        InventoryMenu.SetActive(true);
 
         ammoLeft--;
         if(ammoLeft >= 0)
@@ -68,5 +69,5 @@ public class InventoryManager : MonoBehaviour
     private void OnDisable()
     {
         controls.Disable();
-    } */
+    }
 }
