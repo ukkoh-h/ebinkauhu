@@ -19425,10 +19425,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletRange: 100
-  fireRate: 1
+  fireRate: 0.1
   reloadTime: 2
-  isAutomatic: 0
-  magazineSize: 5
+  isAutomatic: 1
+  magazineSize: 100
   bulletSpeed: 30
   bulletDamage: 5
   bulletSpawnTransform: {fileID: 1866075010}
