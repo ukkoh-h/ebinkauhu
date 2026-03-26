@@ -6,9 +6,6 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     private InputMaster controls;
-
-    //private RaycastHit rayHit;
-
     
     [SerializeField] private float bulletRange;
     [SerializeField] private float fireRate, reloadTime;
@@ -68,15 +65,10 @@ public class Weapon : MonoBehaviour
     private void PerformShot()
     {
         readyToShoot = false;
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnTransform.position, Quaternion.identity, GameObject.FindGameObjectWithTag("WorldObjectHolder").transform);
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnTransform.position, Quaternion.FromToRotation(transform.forward, bulletSpawnTransform.forward) * transform.rotation, GameObject.FindGameObjectWithTag("WorldObjectHolder").transform);
         bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnTransform.forward * bulletSpeed, ForceMode.Impulse);
+        //transform.forward = Vector3.Lerp( transform.forward, rigidbody.velocity, Time.deltaTime );
         bullet.GetComponent<Bullet>().damage = bulletDamage;
-        /* Vector3 direction = transform.forward;
-
-        if(Physics.Raycast(transform.position, direction, out rayHit, bulletRange))
-        {
-            Debug.Log(rayHit.collider.gameObject.name);
-        } */
 
         AudioSource.PlayClipAtPoint(WeaponAudioClips[1], transform.TransformPoint(_controller.center), WeaponAudioVolume);
 
