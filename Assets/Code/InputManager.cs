@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager instance;
+   /*  public static InputManager instance;
 
     public bool MenuOpenCloseInput {get; private set; }
 
@@ -27,5 +27,5 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         MenuOpenCloseInput = _menuOpenCloseAction.WasPressedThisFrame();
-    }
+    } */
 }

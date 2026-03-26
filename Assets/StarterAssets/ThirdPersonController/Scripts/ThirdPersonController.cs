@@ -100,10 +100,8 @@ namespace StarterAssets
         }
 
         private InputAction moveAction;
-        public float smooth = 5f; // Rotation speed
+        InputAction qt;
         private Quaternion targetRotation;
-        /* public int tapCount = 2;
-        public float tapDelay = 0.5; */
 
         private void Start()
         {
@@ -118,6 +116,7 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
             moveAction = _playerInput.actions["Move"];
             targetRotation = transform.rotation;
+            qt = _playerInput.actions.FindAction("Quickturn");
         
         }
 
@@ -159,7 +158,7 @@ namespace StarterAssets
             if (_input.move == Vector2.down || _input.sprint && inputVertical < 0 || inputHorizontal != 0 && inputVertical < 0 ) 
             {
                 targetSpeed = ReverseSpeed;
-                targetTurnSpeed = turnSpeed;
+                targetTurnSpeed = turnReverseSpeed;
             }
 
             /* float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
@@ -243,19 +242,19 @@ namespace StarterAssets
                 } */
                 if (_input.sprint) _animationBlend = 5.335f; else _animationBlend = 2.0f;
                 if (inputVertical == 0) 
-            {
-                if (_input.move == Vector2.zero) 
                 {
-                    _animationBlend = 0f;
-                } else {
-                    _animationBlend = 2f;
+                    if (_input.move == Vector2.zero) 
+                    {
+                        _animationBlend = 0f;
+                    } else {
+                        _animationBlend = 2f;
+                    }
+
+                    
+
+                    _animator.SetFloat(_animIDSpeed, _animationBlend);
+                    _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
                 }
-
-                
-
-                _animator.SetFloat(_animIDSpeed, _animationBlend);
-                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
-            }
 
             if (_input.move == Vector2.down || _input.sprint && inputVertical < 0 || inputHorizontal != 0 && inputVertical < 0 ) 
             {
@@ -284,12 +283,12 @@ namespace StarterAssets
 
                 // Smoothly interpolate towards the target rotation every frame
                 //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smooth * Time.deltaTime);
-                if(_input.quickturn)
+                if(qt.WasPerformedThisFrame())
                 {
                     //transform.rotation*Quaternion.AngleAxis(180, Vector3.up);
-                    targetRotation*=Quaternion.AngleAxis(180, Vector3.up);
+                    transform.rotation*=Quaternion.AngleAxis(180, Vector3.up);
                     
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotationSmoothTime);
+                    //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5f);
                 }
         }
 
