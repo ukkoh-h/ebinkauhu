@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 //using System.Collections;
 using UnityEngine.AI;
@@ -13,6 +14,7 @@ public class Enemy : MonoBehaviour
     //public float walkPointRange;
     public float timeBetweenAttacks;
     public float sightRange;
+    public float hearingRange;
     /// <summary>
     public float attackRange;
     /// </summary>
@@ -23,7 +25,11 @@ public class Enemy : MonoBehaviour
     
     //private Vector3 walkPoint;
     //private bool walkPointSet;
+    private Vector3 targetPosition;
     private bool alreadyAttacked;
+    private bool noise = false;
+    private bool playerHeard = false;
+    private bool navigating = false;
     /*private bool takeDamage;*/
 
     private void Awake()
@@ -35,14 +41,22 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        bool playerInHearingRange = Physics.CheckSphere(transform.position, hearingRange, playerLayer);
         bool playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
-        /*if (!playerInSightRange && !playerInAttackRange)
+        if (playerInHearingRange && noise) {playerHeard = true;}
+        if (playerHeard && playerInSightRange) {playerHeard = false;}
+
+        /*if (!playerInSightRange && !playerInAttackRange && !playerHeared)
         {
             Patroling();
         }
-        else*/ if (playerInSightRange && !playerInAttackRange)
+        else if (!playerInSightRange && !playerInAttackRange && playerHeared)
+        {
+            NavLastHeared();
+        }
+        else */ if (playerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
         }
@@ -89,38 +103,47 @@ public class Enemy : MonoBehaviour
         }
     }*/
 
+    private void NavLastHeard()
+    {
+        if (!navigating) {
+            targetPosition = player.position;
+            navigating = true;
+        }
+        navAgent.SetDestination(targetPosition);
+    }
+
    private void ChasePlayer()
-{
-    navAgent.SetDestination(player.position);
-    //animator.SetFloat("Velocity", 0.6f);
-    navAgent.isStopped = false; // Add this line
-}
+    {
+        navAgent.SetDestination(player.position);
+        //animator.SetFloat("Velocity", 0.6f);
+        navAgent.isStopped = false; // Add this line
+    }
 
 
     private void AttackPlayer()
-{
-    navAgent.SetDestination(transform.position);
-
-    if (!alreadyAttacked)
     {
-        transform.LookAt(player.position);
-        alreadyAttacked = true;
-        //animator.SetBool("Attack", true);
-        Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        navAgent.SetDestination(transform.position);
 
-        /*RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange))
+        if (!alreadyAttacked)
         {
-            
-            //    YOU CAN USE THIS TO GET THE PLAYER HUD AND CALL THE TAKE DAMAGE FUNCTION
+            transform.LookAt(player.position);
+            alreadyAttacked = true;
+            //animator.SetBool("Attack", true);
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
 
-            //PlayerHUD playerHUD = hit.transform.GetComponent<PlayerHUD>();
-            //if (playerHUD != null)
-            //{
-            //   playerHUD.takeDamage(damage);
-            //}
-             
-        }*/
+            /*RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange))
+            {
+            
+                //    YOU CAN USE THIS TO GET THE PLAYER HUD AND CALL THE TAKE DAMAGE FUNCTION
+
+                //PlayerHUD playerHUD = hit.transform.GetComponent<PlayerHUD>();
+                //if (playerHUD != null)
+                //{
+                //   playerHUD.takeDamage(damage);
+                //}
+         
+            }*/
     }
 }
 
@@ -129,6 +152,12 @@ public class Enemy : MonoBehaviour
     {
         alreadyAttacked = false;
         //animator.SetBool("Attack", false);
+    }
+
+    public void MakeNoise()
+    {
+        noise = true;
+        navigating = false;
     }
 
     /*public void TakeDamage(float damage)
