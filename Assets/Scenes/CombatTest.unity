@@ -2764,7 +2764,7 @@ Transform:
   m_GameObject: {fileID: 246135981}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.4, y: 0.385, z: -0.15}
+  m_LocalPosition: {x: 6.4, y: 0.385, z: -0.19}
   m_LocalScale: {x: 0.25, y: 0.5, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5436,7 +5436,7 @@ Transform:
   m_GameObject: {fileID: 513733833}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.4, y: 0.385, z: -1.136}
+  m_LocalPosition: {x: 6.4, y: 0.385, z: -1.07}
   m_LocalScale: {x: 0.25, y: 0.5, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16863,7 +16863,7 @@ Transform:
   m_GameObject: {fileID: 1502813748}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: -1.9059999, y: 2.014, z: 1.734}
+  m_LocalPosition: {x: -3.81, y: 1.9779999, z: 1.925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20751,7 +20751,7 @@ Transform:
   m_GameObject: {fileID: 1924871375}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.4, y: 0.385, z: -2.11}
+  m_LocalPosition: {x: 6.4, y: 0.385, z: -1.97}
   m_LocalScale: {x: 0.25, y: 0.5, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22273,16 +22273,18 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'WASD: Movement
 
+    Alt/Doubletap S: Quickturn
+
 
     Mouse_1/: Shoot
 
-    R: Reload
+    R:
+    Reload
 
     H: Heal
 
 
-    Tab/I:
-    Inventory
+    Tab/I: Inventory
 
     Esc: pause
 
@@ -22317,8 +22319,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 9
+  m_fontSizeBase: 9
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
