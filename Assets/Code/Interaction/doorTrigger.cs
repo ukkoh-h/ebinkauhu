@@ -1,16 +1,31 @@
 using UnityEngine;
 
-public class doorTrigger : MonoBehaviour
+public class doorTrigger : MonoBehaviour, IInteractable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] lockedStatus _lockedStatus;
+    public bool doorDirection;
+    public Transform monster;
+    public void Interact()
     {
-        
+        if (!doorDirection)
+        {
+            _lockedStatus.LockedStatus2();
+        } else
+        {
+            _lockedStatus.LockedStatus1();
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.CompareTag("monster"))
+        {
+            if (!doorDirection)
+            {
+                _lockedStatus.LockedStatus2();
+            } else
+            {
+                _lockedStatus.LockedStatus1();
+            }   
+        }
     }
 }

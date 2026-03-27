@@ -1,14 +1,13 @@
 using UnityEngine;
 
-public class door : MonoBehaviour, IInteractable
+public class doorLocked2 : MonoBehaviour
 {
-    //public AnimationCurve openSpeedCurve = new(new Keyframe[] { new(0, 1, 0, 0), new(0.8f, 1, 0, 0), new(1, 0, 0, 0) }); //Contols the open speed at a specific time (ex. the door opens fast at the start then slows down at the end)
-    //public AnimationCurve openSpeedCurve = new(new Keyframe[] { new(0, 0, 1, 0), new(0, 0, 1, 0.8f), new(0, 0, 0, 1) }); //Contols the open speed at a specific time (ex. the door opens fast at the start then slows down at the end)
-    public float openSpeedMultiplier = 2.0f; //Increasing this value will make the door open faster
+public float openSpeedMultiplier = 2.0f; //Increasing this value will make the door open faster
     public float doorOpenAngle = 90.0f; //Global door open speed that will multiply the openSpeedCurve
 
     bool open = false;
     bool direction = false;
+    bool _isLocked = true;
     //bool enter = false;
 
     float defaultRotationAngle;
@@ -36,8 +35,6 @@ public class door : MonoBehaviour, IInteractable
         {
             transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, defaultRotationAngle + (open ? doorOpenAngle : 0), openTime), transform.localEulerAngles.z);
         }
-        // aukaisee toiseen suuntaan ---> 
-        //transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, (defaultRotationAngle + (open ? doorOpenAngle : 0), openTime)) * -1, transform.localEulerAngles.z);
         if (open == true)
         {
             timeOpen ++;
@@ -50,16 +47,32 @@ public class door : MonoBehaviour, IInteractable
             }
         }
     }
-    public void Interact()
+    public void Open1()
     {
-        if (open == false)
-        {
-            Debug.Log("OH NO, I GOT INTERACTED!");
-            open = !open;
-            //direction = !direction;
-            currentRotationAngle = transform.localEulerAngles.y;
-            //transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, (defaultRotationAngle + (open ? doorOpenAngle : 0)) * -1, openTime), transform.localEulerAngles.z);
-            openTime = 0;
+        if (!_isLocked) {
+        if (!open)
+            {
+                open = !open;
+                direction = false;
+                currentRotationAngle = transform.localEulerAngles.y;
+                openTime = 0;
+            }
         }
+    }
+    public void Open2()
+    {
+        if (!_isLocked) {
+        if (!open)
+            {
+                open = !open;
+                direction = true;
+                currentRotationAngle = transform.localEulerAngles.y;
+                openTime = 0;
+            }
+        }
+    }
+        public void ChangeLocked()
+    {
+        _isLocked = !_isLocked;
     }
 }

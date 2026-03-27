@@ -8,6 +8,7 @@ public class door2 : MonoBehaviour
     public float doorOpenAngle = 90.0f; //Global door open speed that will multiply the openSpeedCurve
 
     bool open = false;
+    bool direction = false;
     //bool enter = false;
 
     float defaultRotationAngle;
@@ -28,26 +29,42 @@ public class door2 : MonoBehaviour
         {
             openTime += Time.deltaTime * openSpeedMultiplier /* * openSpeedCurve.Evaluate(openTime)*/;
         }
-        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, defaultRotationAngle + (open ? doorOpenAngle : 0), openTime), transform.localEulerAngles.z);
-        // aukaisee toiseen suuntaan ---> transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, (defaultRotationAngle + (open ? doorOpenAngle : 0), openTime)) * -1, transform.localEulerAngles.z);
+        if (direction)
+        {
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, defaultRotationAngle + (open ? doorOpenAngle : 0) * -1, openTime), transform.localEulerAngles.z);
+        } else
+        {
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, defaultRotationAngle + (open ? doorOpenAngle : 0), openTime), transform.localEulerAngles.z);
+        }
         if (open == true)
         {
             timeOpen ++;
             if (timeOpen > 320)
             {
                 open = !open;
+                direction = false;
                 currentRotationAngle = transform.localEulerAngles.y;
                 openTime = 0;
                 timeOpen = 0;
             }
         }
     }
-    public void Interact()
+    public void Open1()
     {
-        if (open == false)
+        if (!open)
         {
-            Debug.Log("OH NO, I GOT INTERACTED!");
             open = !open;
+            direction = false;
+            currentRotationAngle = transform.localEulerAngles.y;
+            openTime = 0;
+        }
+    }
+    public void Open2()
+    {
+        if (!open)
+        {
+            open = !open;
+            direction = true;
             currentRotationAngle = transform.localEulerAngles.y;
             openTime = 0;
         }

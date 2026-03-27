@@ -13,15 +13,18 @@ public class Interactor : MonoBehaviour
 
     InputAction interact;
 
+    private PlayerInput _playerInput;
+
     void Start()
     {
-        interact = InputSystem.actions.FindAction("Interact");
+        _playerInput = GetComponent<PlayerInput>();
+        interact = _playerInput.actions.FindAction("Interact");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (interact.IsPressed())
+        if (interact.WasPerformedThisFrame())
         {
             Ray r = new(InteractorSource.position, InteractorSource.forward);
             if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange))
