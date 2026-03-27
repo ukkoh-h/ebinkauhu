@@ -93,6 +93,15 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             ""id"": ""f62a4b92-ef5e-4175-8f4c-c9075429d32c"",
             ""actions"": [
                 {
+                    ""name"": ""Quickturn"",
+                    ""type"": ""Button"",
+                    ""id"": ""21a065db-f8da-4d7c-bedd-8b360aeeadbd"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""6bc1aaf4-b110-4ff7-891e-5b9fe6f32c4d"",
@@ -138,12 +147,12 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Quickturn"",
+                    ""name"": ""Heal"",
                     ""type"": ""Button"",
-                    ""id"": ""21a065db-f8da-4d7c-bedd-8b360aeeadbd"",
+                    ""id"": ""f22d29a5-b521-40e2-a554-c5bcb4d06820"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -360,11 +369,44 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3e87b508-0244-494e-97ff-c640d77885cb"",
-                    ""path"": ""<Keyboard>/alt"",
-                    ""interactions"": """",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": ""MultiTap(tapTime=0.2,tapDelay=0.2,pressPoint=0.2)"",
                     ""processors"": """",
                     ""groups"": "";KeyboardMouse"",
                     ""action"": ""Quickturn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c68615eb-479e-4ffe-9a85-685e53011285"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quickturn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0a66037-0ff5-457c-8f76-b5c4afe142bb"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""584b7c7a-c945-4d31-bc8b-cf2296ad0c83"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";KeyboardMouse"",
+                    ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -372,12 +414,12 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         },
         {
             ""name"": ""UI"",
-            ""id"": ""8bdf2103-297f-4e66-91d9-202f9b4649ac"",
+            ""id"": ""819bfce5-5b64-4197-821e-694022359332"",
             ""actions"": [
                 {
                     ""name"": ""InventoryOpenClose"",
                     ""type"": ""Button"",
-                    ""id"": ""d192f43f-7bf3-46aa-930d-a477cbf9744f"",
+                    ""id"": ""8caaaffc-c49a-4379-ae44-187d3d57ae99"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -386,7 +428,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""MenuOpenClose"",
                     ""type"": ""Button"",
-                    ""id"": ""1b87bc79-b67b-43cb-83d1-a77a4645716c"",
+                    ""id"": ""d8c680a6-80c9-454c-b581-967697269e5f"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -396,7 +438,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""1164529e-eec5-43b0-b42f-e398d0557db6"",
+                    ""id"": ""996197cd-a9b4-4dfc-9b7f-fc14a950fa46"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -407,7 +449,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5e0298f6-4591-4910-ab88-43fa511fd4f4"",
+                    ""id"": ""bceb3aa0-933d-4bea-a782-e465bd5b2a78"",
                     ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -418,7 +460,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""87e8b1b0-ac54-49ef-934b-0bbc47bd9272"",
+                    ""id"": ""a85a5bed-6a5e-43cc-babf-ad92111829c9"",
                     ""path"": ""<Gamepad>/select"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -429,7 +471,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4c13a30c-cd9c-491b-8ef5-a63d857f3993"",
+                    ""id"": ""387daf80-bca1-48ee-a505-1ce756e687fd"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -440,7 +482,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0ef6eaf2-0037-4bfd-8913-d896327a44e3"",
+                    ""id"": ""b077b99f-c6bb-458d-b81e-1973a85988ff"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -504,12 +546,13 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Quickturn = m_Player.FindAction("Quickturn", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_Quickturn = m_Player.FindAction("Quickturn", throwIfNotFound: true);
+        m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_InventoryOpenClose = m_UI.FindAction("InventoryOpenClose", throwIfNotFound: true);
@@ -595,12 +638,13 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+    private readonly InputAction m_Player_Quickturn;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Reload;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_Quickturn;
+    private readonly InputAction m_Player_Heal;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -612,6 +656,10 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
         public PlayerActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Quickturn".
+        /// </summary>
+        public InputAction @Quickturn => m_Wrapper.m_Player_Quickturn;
         /// <summary>
         /// Provides access to the underlying input action "Player/Move".
         /// </summary>
@@ -633,9 +681,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Quickturn".
+        /// Provides access to the underlying input action "Player/Heal".
         /// </summary>
-        public InputAction @Quickturn => m_Wrapper.m_Player_Quickturn;
+        public InputAction @Heal => m_Wrapper.m_Player_Heal;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -662,6 +710,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+            @Quickturn.started += instance.OnQuickturn;
+            @Quickturn.performed += instance.OnQuickturn;
+            @Quickturn.canceled += instance.OnQuickturn;
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -677,9 +728,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @Quickturn.started += instance.OnQuickturn;
-            @Quickturn.performed += instance.OnQuickturn;
-            @Quickturn.canceled += instance.OnQuickturn;
+            @Heal.started += instance.OnHeal;
+            @Heal.performed += instance.OnHeal;
+            @Heal.canceled += instance.OnHeal;
         }
 
         /// <summary>
@@ -691,6 +742,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         /// <seealso cref="PlayerActions" />
         private void UnregisterCallbacks(IPlayerActions instance)
         {
+            @Quickturn.started -= instance.OnQuickturn;
+            @Quickturn.performed -= instance.OnQuickturn;
+            @Quickturn.canceled -= instance.OnQuickturn;
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
@@ -706,9 +760,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @Quickturn.started -= instance.OnQuickturn;
-            @Quickturn.performed -= instance.OnQuickturn;
-            @Quickturn.canceled -= instance.OnQuickturn;
+            @Heal.started -= instance.OnHeal;
+            @Heal.performed -= instance.OnHeal;
+            @Heal.canceled -= instance.OnHeal;
         }
 
         /// <summary>
@@ -909,6 +963,13 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         /// <summary>
+        /// Method invoked when associated input action "Quickturn" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnQuickturn(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -944,12 +1005,12 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Quickturn" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Heal" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnQuickturn(InputAction.CallbackContext context);
+        void OnHeal(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

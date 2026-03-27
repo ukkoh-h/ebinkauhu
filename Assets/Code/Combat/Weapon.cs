@@ -6,12 +6,15 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     private InputMaster controls;
+    public PlayerStatus playerStatus;
     
     [SerializeField] private float bulletRange;
     [SerializeField] private float fireRate, reloadTime;
     [SerializeField] private bool isAutomatic;
-    [SerializeField] private int magazineSize;
-    private int ammoLeft;
+    [SerializeField] public int magazineSize;
+    
+    public int ammoLeft;
+    [SerializeField] public int pickupAmount;
 
     //Shoot in 4min vid
     [Header("Bullet Variables")]
@@ -95,15 +98,37 @@ public class Weapon : MonoBehaviour
     }
     private void Reload()
     {
-        reloading = true;
-        AudioSource.PlayClipAtPoint(WeaponAudioClips[2], transform.TransformPoint(_controller.center), WeaponAudioVolume);
-        Invoke("ReloadFinish", reloadTime);
+        if (playerStatus.ammoPool > 0)
+        {
+            reloading = true;
+            AudioSource.PlayClipAtPoint(WeaponAudioClips[2], transform.TransformPoint(_controller.center), WeaponAudioVolume);
+            Invoke("ReloadFinish", reloadTime);
+        }
+        else
+        {
+            MagEmpty();
+        }
+        
+        
     }
 
     private void ReloadFinish()
     {
-        ammoLeft = magazineSize;
+        int reloadAmount = magazineSize - ammoLeft;
+        reloadAmount = (playerStatus.ammoPool - reloadAmount) >= 0 ? reloadAmount : playerStatus.ammoPool;
+        ammoLeft += reloadAmount;
+        playerStatus.ammoPool -= reloadAmount;
+
         reloading = false;
+    }
+
+    public void AddAmmo(int ammoAmount)
+    {
+        playerStatus.ammoPool += ammoAmount;
+        if(playerStatus.ammoPool > playerStatus.maxPlayerAmmo)
+        {
+            playerStatus.ammoPool = playerStatus.maxPlayerAmmo;
+        }
     }
 
     private void OnEnable()

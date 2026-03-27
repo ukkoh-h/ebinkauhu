@@ -7,6 +7,15 @@
             "id": "f62a4b92-ef5e-4175-8f4c-c9075429d32c",
             "actions": [
                 {
+                    "name": "Quickturn",
+                    "type": "Button",
+                    "id": "21a065db-f8da-4d7c-bedd-8b360aeeadbd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Move",
                     "type": "Value",
                     "id": "6bc1aaf4-b110-4ff7-891e-5b9fe6f32c4d",
@@ -52,12 +61,12 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Quickturn",
+                    "name": "Heal",
                     "type": "Button",
-                    "id": "21a065db-f8da-4d7c-bedd-8b360aeeadbd",
+                    "id": "f22d29a5-b521-40e2-a554-c5bcb4d06820",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -274,11 +283,44 @@
                 {
                     "name": "",
                     "id": "3e87b508-0244-494e-97ff-c640d77885cb",
-                    "path": "<Keyboard>/alt",
-                    "interactions": "",
+                    "path": "<Keyboard>/s",
+                    "interactions": "MultiTap(tapTime=0.2,tapDelay=0.2,pressPoint=0.2)",
                     "processors": "",
                     "groups": ";KeyboardMouse",
                     "action": "Quickturn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c68615eb-479e-4ffe-9a85-685e53011285",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quickturn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f0a66037-0ff5-457c-8f76-b5c4afe142bb",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "584b7c7a-c945-4d31-bc8b-cf2296ad0c83",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -286,12 +328,12 @@
         },
         {
             "name": "UI",
-            "id": "8bdf2103-297f-4e66-91d9-202f9b4649ac",
+            "id": "819bfce5-5b64-4197-821e-694022359332",
             "actions": [
                 {
                     "name": "InventoryOpenClose",
                     "type": "Button",
-                    "id": "d192f43f-7bf3-46aa-930d-a477cbf9744f",
+                    "id": "8caaaffc-c49a-4379-ae44-187d3d57ae99",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -300,7 +342,7 @@
                 {
                     "name": "MenuOpenClose",
                     "type": "Button",
-                    "id": "1b87bc79-b67b-43cb-83d1-a77a4645716c",
+                    "id": "d8c680a6-80c9-454c-b581-967697269e5f",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -310,7 +352,7 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "1164529e-eec5-43b0-b42f-e398d0557db6",
+                    "id": "996197cd-a9b4-4dfc-9b7f-fc14a950fa46",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
@@ -321,7 +363,7 @@
                 },
                 {
                     "name": "",
-                    "id": "5e0298f6-4591-4910-ab88-43fa511fd4f4",
+                    "id": "bceb3aa0-933d-4bea-a782-e465bd5b2a78",
                     "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "",
@@ -332,7 +374,7 @@
                 },
                 {
                     "name": "",
-                    "id": "87e8b1b0-ac54-49ef-934b-0bbc47bd9272",
+                    "id": "a85a5bed-6a5e-43cc-babf-ad92111829c9",
                     "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
@@ -343,7 +385,7 @@
                 },
                 {
                     "name": "",
-                    "id": "4c13a30c-cd9c-491b-8ef5-a63d857f3993",
+                    "id": "387daf80-bca1-48ee-a505-1ce756e687fd",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
@@ -354,7 +396,7 @@
                 },
                 {
                     "name": "",
-                    "id": "0ef6eaf2-0037-4bfd-8913-d896327a44e3",
+                    "id": "b077b99f-c6bb-458d-b81e-1973a85988ff",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",

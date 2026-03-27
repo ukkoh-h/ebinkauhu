@@ -283,7 +283,7 @@ namespace StarterAssets
 
                 // Smoothly interpolate towards the target rotation every frame
                 //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smooth * Time.deltaTime);
-                if(qt.WasPerformedThisFrame())
+                if(qt.triggered)
                 {
                     //transform.rotation*Quaternion.AngleAxis(180, Vector3.up);
                     transform.rotation*=Quaternion.AngleAxis(180, Vector3.up);
