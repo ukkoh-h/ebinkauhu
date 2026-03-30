@@ -607,6 +607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lockedStatus: {fileID: 1596087575}
   doorDirection: 0
+  monster: {fileID: 0}
 --- !u!136 &334207174
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -926,7 +927,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 535592125}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.024182552, y: -0.18339953, z: -0.0045107375, w: 0.9827306}
+  m_LocalRotation: {x: -0.024182674, y: -0.18339953, z: -0.0045107678, w: 0.9827306}
   m_LocalPosition: {x: 14.041245, y: 1.860915, z: -1.4336181}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1088,6 +1089,7 @@ GameObject:
   - component: {fileID: 611469468}
   - component: {fileID: 611469473}
   - component: {fileID: 611469474}
+  - component: {fileID: 611469475}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: monster
@@ -1180,7 +1182,7 @@ Transform:
   m_GameObject: {fileID: 611469466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 1, z: 9.96}
+  m_LocalPosition: {x: -0.01, y: 2, z: 9.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1207,8 +1209,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   timeBetweenAttacks: 10
-  sightRange: 20
-  attackRange: 5
+  sightRange: 5
+  hearingRange: 20
+  attackRange: 1
 --- !u!195 &611469474
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1228,9 +1231,36 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &611469475
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611469466}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &636015391
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,6 +2182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lockedStatus: {fileID: 1737859037}
   doorDirection: 0
+  monster: {fileID: 0}
 --- !u!136 &1091144568
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2244,6 +2275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lockedStatus: {fileID: 1737859037}
   doorDirection: 1
+  monster: {fileID: 0}
 --- !u!136 &1170584939
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2911,6 +2943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lockedStatus: {fileID: 1596087575}
   doorDirection: 1
+  monster: {fileID: 0}
 --- !u!136 &1527573554
 CapsuleCollider:
   m_ObjectHideFlags: 0
