@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Pickup : MonoBehaviour
+public class AmmoPickup : MonoBehaviour
 {
-    //[SerializeField] public int ammoPickupAmount;
+    public int ammoPickupAmount = 15;
     void Update()
     {
         transform.Rotate(new Vector3(0f, 100f, 0f) * Time.deltaTime);
@@ -12,7 +12,7 @@ public class Pickup : MonoBehaviour
         Weapon weapon = collision.gameObject.GetComponentInChildren<Weapon>();
         if (weapon)
         {
-            weapon.AddAmmo(weapon.pickupAmount);
+            weapon.AddAmmo(ammoPickupAmount);
             Destroy(gameObject);
         }
     }

@@ -18,10 +18,9 @@ public class PlayerStatus : MonoBehaviour
 
     //Potionin healaama määrä, healaus
     public int potionHealAmount;
-    public int healthPickupAmount;
 
     private bool healing;
-    private float healTime;
+    //private float healTime;
     //private float healCooldown;
 
     private PlayerInput _playerInput;

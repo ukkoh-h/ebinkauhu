@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
-    //[SerializeField] public int ammoPickupAmount;
+    public int healthPickupAmount = 3;
     void Update()
     {
         transform.Rotate(new Vector3(0f, 100f, 0f) * Time.deltaTime);
@@ -12,7 +12,7 @@ public class HealthPickup : MonoBehaviour
         PlayerStatus playerStatus = collision.gameObject.GetComponentInChildren<PlayerStatus>();
         if (playerStatus)
         {
-            playerStatus.AddPotions(playerStatus.healthPickupAmount);
+            playerStatus.AddPotions(healthPickupAmount);
             Destroy(gameObject);
         }
     }

@@ -14,7 +14,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] public int magazineSize;
     
     public int ammoLeft;
-    [SerializeField] public int pickupAmount;
 
     //Shoot in 4min vid
     [Header("Bullet Variables")]
