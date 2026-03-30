@@ -8,6 +8,7 @@ public class door : MonoBehaviour, IInteractable
     public float doorOpenAngle = 90.0f; //Global door open speed that will multiply the openSpeedCurve
 
     bool open = false;
+    bool direction = false;
     //bool enter = false;
 
     float defaultRotationAngle;
@@ -28,8 +29,15 @@ public class door : MonoBehaviour, IInteractable
         {
             openTime += Time.deltaTime * openSpeedMultiplier /* * openSpeedCurve.Evaluate(openTime)*/;
         }
-        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, defaultRotationAngle + (open ? doorOpenAngle : 0), openTime), transform.localEulerAngles.z);
-        // aukaisee toiseen suuntaan ---> transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, (defaultRotationAngle + (open ? doorOpenAngle : 0), openTime)) * -1, transform.localEulerAngles.z);
+        if (direction)
+        {
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, (defaultRotationAngle + (open ? doorOpenAngle : 0)) * -1, openTime), transform.localEulerAngles.z);
+        } else
+        {
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, defaultRotationAngle + (open ? doorOpenAngle : 0), openTime), transform.localEulerAngles.z);
+        }
+        // aukaisee toiseen suuntaan ---> 
+        //transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, (defaultRotationAngle + (open ? doorOpenAngle : 0), openTime)) * -1, transform.localEulerAngles.z);
         if (open == true)
         {
             timeOpen ++;
@@ -48,7 +56,9 @@ public class door : MonoBehaviour, IInteractable
         {
             Debug.Log("OH NO, I GOT INTERACTED!");
             open = !open;
+            //direction = !direction;
             currentRotationAngle = transform.localEulerAngles.y;
+            //transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, (defaultRotationAngle + (open ? doorOpenAngle : 0)) * -1, openTime), transform.localEulerAngles.z);
             openTime = 0;
         }
     }

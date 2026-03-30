@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InventoryManager : MonoBehaviour
 {
-    private InputMaster controls;
+    /* private InputMaster controls;
     public GameObject InventoryMenu;
 
     private int ammoLeft;
@@ -69,5 +69,5 @@ public class InventoryManager : MonoBehaviour
     private void OnDisable()
     {
         controls.Disable();
-    }
+    } */
 }

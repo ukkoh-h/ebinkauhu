@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class KeyInteractable : MonoBehaviour, IInteractable
 {
-    [SerializeField] doorLocked _doorLocked;
+    [SerializeField] lockedStatus _doorLocked;
     bool interactable = true;
     public void Interact()
     {
