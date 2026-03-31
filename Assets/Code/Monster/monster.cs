@@ -158,6 +158,7 @@ public class monster : MonoBehaviour
     public void MakeNoise()
     {
         noise = true;
+        navigating = false;
     }
 
     /*public void TakeDamage(float damage)
