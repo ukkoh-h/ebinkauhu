@@ -49,15 +49,15 @@ public class monster : MonoBehaviour
         if (playerHeard && playerInSightRange) {playerHeard = false;}
         if (playerInSightRange) {Debug.Log("I SEE YOU!");}
 
-        /*if (!playerInSightRange && !playerInAttackRange && !playerHeared)
+        /* (!playerInSightRange && !playerInAttackRange && !playerHeared)
         {
             Patroling();
         }
-        else if (!playerInSightRange && !playerInAttackRange && playerHeared)
+        else*/if(!playerInSightRange && !playerInAttackRange && playerHeard)
         {
-            NavLastHeared();
+            NavLastHeard();
         }
-        else */ if (playerInSightRange && !playerInAttackRange)
+        else  if (playerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
         }

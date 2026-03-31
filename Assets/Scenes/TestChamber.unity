@@ -927,8 +927,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 535592125}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.024182482, y: -0.18339953, z: -0.00451072, w: 0.9827306}
-  m_LocalPosition: {x: 14.041245, y: 1.860915, z: -1.4336181}
+  m_LocalRotation: {x: -0.12249695, y: 0.26599893, z: 0.03410063, w: 0.95555025}
+  m_LocalPosition: {x: 7.2628717, y: 5.039269, z: -8.432205}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2634,6 +2634,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: monster
+      value: 
+      objectReference: {fileID: 611469473}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: turnSpeed
       value: 180
