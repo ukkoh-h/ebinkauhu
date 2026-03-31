@@ -11,7 +11,9 @@ public class monster : MonoBehaviour
     public Transform player;
     public LayerMask groundLayer, playerLayer;
     //public float health;
-    //public float walkPointRange;
+    public float walkPointRange;
+    public float patrolSpeed;
+    public float chaseSpeed;
     public float timeBetweenAttacks;
     public float sightRange;
     public float hearingRange;
@@ -23,12 +25,12 @@ public class monster : MonoBehaviour
     public ParticleSystem hitEffect;*/
 
     
-    //private Vector3 walkPoint;
-    //private bool walkPointSet;
+    private Vector3 walkPoint;
+    private bool walkPointSet;
     private Vector3 targetPosition;
     private bool alreadyAttacked;
     private bool noise = false;
-    private bool playerHeard = false;
+    private bool playerHeared = false;
     private bool navigating = false;
     /*private bool takeDamage;*/
 
@@ -44,22 +46,26 @@ public class monster : MonoBehaviour
         bool playerInHearingRange = Physics.CheckSphere(transform.position, hearingRange, playerLayer);
         bool playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
+        //Debug.Log(walkPointSet);
 
-        if (playerInHearingRange && noise) {playerHeard = true;}
-        if (playerHeard && playerInSightRange) {playerHeard = false;}
-        if (playerInSightRange) {Debug.Log("I SEE YOU!");}
+        if (playerInHearingRange && noise) playerHeared = true;
+        /*if (playerHeared && playerInSightRange) {playerHeared = false;}
+        if (playerInSightRange) {Debug.Log("I SEE YOU!");}*/
 
-        /* (!playerInSightRange && !playerInAttackRange && !playerHeared)
+        if (!playerInSightRange && !playerInAttackRange && !playerHeared)
         {
             Patroling();
+            navAgent.speed = patrolSpeed;
         }
-        else*/if(!playerInSightRange && !playerInAttackRange && playerHeard)
+        else if (!playerInSightRange && !playerInAttackRange && playerHeared)
         {
             NavLastHeard();
+            navAgent.speed = chaseSpeed;
         }
         else  if (playerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
+            navAgent.speed = chaseSpeed;
         }
         else if (playerInAttackRange && playerInSightRange)
         {
@@ -71,7 +77,7 @@ public class monster : MonoBehaviour
         //}
     }
 
-    /*private void Patroling()
+    private void Patroling()
     {
         if (!walkPointSet)
         {
@@ -96,21 +102,33 @@ public class monster : MonoBehaviour
     {
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        walkPoint = new Vector3(player.position.x + randomX, player.position.y + 1, player.position.z + randomZ);
+        Debug.Log(walkPoint);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, groundLayer))
         {
             walkPointSet = true;
         }
-    }*/
+    }
 
     private void NavLastHeard()
     {
         if (!navigating) {
             targetPosition = player.position;
             navigating = true;
+            noise = false;
         }
         navAgent.SetDestination(targetPosition);
+
+        Vector3 distanceToTargetPosition = transform.position - targetPosition;
+
+        //Debug.Log(distanceToTargetPosition.magnitude);
+
+        if (distanceToTargetPosition.magnitude < 2)
+        {
+            playerHeared = false;
+            //Debug.Log(playerHeared);
+        }
     }
 
    private void ChasePlayer()
