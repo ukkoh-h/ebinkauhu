@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerStatus : MonoBehaviour
+public class PlayerStatus : MonoBehaviour, IDataPersistence
 {
     public bool hasWeapon_1;
     public bool hasWeapon_2;
@@ -38,6 +38,34 @@ public class PlayerStatus : MonoBehaviour
 
     public bool hitOnce = false;
     public bool hitTwice = false;
+
+    public void LoadData(GameData data)
+    {
+        this.ammoPool = data.ammoPool;
+        this.healthItemPool = data.healthItemPool;
+        this.playerHealth = data.playerHealth;
+
+        this.hasWeapon_2= data.hasWeapon_2;
+
+        this.hasKey_1 = data.hasKey_1;
+        this.hasKey_2 = data.hasKey_2;
+        this.hasKey_3 = data.hasKey_3;
+        this.hasKey_4 = data.hasKey_4;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.ammoPool = this.ammoPool;
+        data.healthItemPool = this.healthItemPool;
+        data.playerHealth = this.playerHealth;
+
+        data.hasWeapon_2 = this.hasWeapon_2;
+
+        data.hasKey_1 = this.hasKey_1;
+        data.hasKey_2 = this.hasKey_2;
+        data.hasKey_3 = this.hasKey_3;
+        data.hasKey_4 = this.hasKey_4;
+    }
 
     private void Start()
     {

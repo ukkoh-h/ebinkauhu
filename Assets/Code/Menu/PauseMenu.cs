@@ -55,4 +55,9 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    public void OnSaveGameClicked()
+    {
+        DataPersistenceManager.instance.SaveGame();
+    }
 }
