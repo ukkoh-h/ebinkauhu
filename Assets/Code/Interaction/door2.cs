@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class door2 : MonoBehaviour
@@ -9,12 +10,12 @@ public class door2 : MonoBehaviour
 
     bool open = false;
     bool direction = false;
+    float timedOpen = 0;
     //bool enter = false;
 
     float defaultRotationAngle;
     float currentRotationAngle;
     float openTime = 0;
-    float timeOpen = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -38,17 +39,23 @@ public class door2 : MonoBehaviour
         }
         if (open == true)
         {
-            timeOpen ++;
-            if (timeOpen > 320)
+            //artCoroutine(DoorTimerCorutine());
+            ++timedOpen;
+            if (timedOpen > 320)
             {
                 open = !open;
                 direction = false;
                 currentRotationAngle = transform.localEulerAngles.y;
                 openTime = 0;
-                timeOpen = 0;
+                timedOpen = 0;
             }
         }
     }
+    /*vate IEnumerator DoorTimerCorutine()
+    {
+        yield return new WaitForSeconds(2f);
+        timedOpen = true;
+    }*/
     public void Open1()
     {
         if (!open)

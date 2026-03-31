@@ -11,9 +11,11 @@ namespace StarterAssets
     [RequireComponent(typeof(CharacterController))]
 #if ENABLE_INPUT_SYSTEM 
     [RequireComponent(typeof(PlayerInput))]
+    
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
+        [SerializeField] monster monster;
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
@@ -126,6 +128,10 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            if (_speed > (SprintSpeed - 0.5)) {
+                monster.MakeNoise();
+                Debug.Log(monster);
+            }
         }
         private void AssignAnimationIDs()
         {
