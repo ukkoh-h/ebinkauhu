@@ -13,7 +13,8 @@ public class lockedStatus : MonoBehaviour
         {
             Debug.Log("DOOR'S LOCKED!");
         }
-    }    public void LockedStatus2()
+    }    
+    public void LockedStatus2()
     {
         if (!locked)
         {

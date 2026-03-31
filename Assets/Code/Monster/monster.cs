@@ -1,11 +1,11 @@
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 //using System.Collections;
 using UnityEngine.AI;
-//lisää  nav mesh actor pelaaja hamolle
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Enemy : MonoBehaviour
+public class monster : MonoBehaviour
 {
     public NavMeshAgent navAgent;
     public Transform player;
@@ -47,16 +47,17 @@ public class Enemy : MonoBehaviour
 
         if (playerInHearingRange && noise) {playerHeard = true;}
         if (playerHeard && playerInSightRange) {playerHeard = false;}
+        if (playerInSightRange) {Debug.Log("I SEE YOU!");}
 
-        /*if (!playerInSightRange && !playerInAttackRange && !playerHeared)
+        /* (!playerInSightRange && !playerInAttackRange && !playerHeared)
         {
             Patroling();
         }
-        else if (!playerInSightRange && !playerInAttackRange && playerHeared)
+        else*/if(!playerInSightRange && !playerInAttackRange && playerHeard)
         {
-            NavLastHeared();
+            NavLastHeard();
         }
-        else */ if (playerInSightRange && !playerInAttackRange)
+        else  if (playerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
         }
@@ -64,10 +65,10 @@ public class Enemy : MonoBehaviour
         {
             AttackPlayer();
         }
-        else if (!playerInSightRange /*&& takeDamage*/)
-        {
-            ChasePlayer();
-        }
+        //else if (!playerInSightRange /*&& takeDamage*/)
+        //{
+        //    ChasePlayer();
+        //}
     }
 
     /*private void Patroling()
