@@ -1,13 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 
 public class GameData
 {
-    public int deathCount;
     public int ammoPool;
     public int healthItemPool;
     public int playerHealth;
+
+    public Vector3 playerPosition;
+    //public Dictionary<string, bool> itemCollected
+    public SerializableDictionary<string, bool> ammoCollected;
+    public SerializableDictionary<string, bool> potionsCollected;
+    public SerializableDictionary<string, bool> keysCollected;
 
     public bool hasWeapon_2;
 
@@ -32,6 +39,12 @@ public class GameData
         this.ammoPool = 35;
         this.healthItemPool = 5;
         this.playerHealth = 6;
+        
+        //Laitetaan halutut aloitus koordinaatit tilalle sit
+        playerPosition = Vector3.zero;
+        ammoCollected = new SerializableDictionary<string, bool>();
+        potionsCollected = new SerializableDictionary<string, bool>();
+        keysCollected = new SerializableDictionary<string, bool>();
 
         this.hasWeapon_2 = false;
 
