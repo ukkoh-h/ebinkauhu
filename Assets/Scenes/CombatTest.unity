@@ -1272,6 +1272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa9a44ba6e6c7f4a9de590ae7d96aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   ammoPickupAmount: 15
 --- !u!65 &73292775
 BoxCollider:
@@ -4599,6 +4600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a095f9ff8363e944797ce667d5c3774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fileName: data.game
 --- !u!4 &356150887
 Transform:
   m_ObjectHideFlags: 0
@@ -6329,6 +6331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa9a44ba6e6c7f4a9de590ae7d96aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   ammoPickupAmount: 15
 --- !u!65 &483096056
 BoxCollider:
@@ -10769,6 +10772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa9a44ba6e6c7f4a9de590ae7d96aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   ammoPickupAmount: 15
 --- !u!65 &877772522
 BoxCollider:
@@ -13208,6 +13212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa9a44ba6e6c7f4a9de590ae7d96aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   ammoPickupAmount: 15
 --- !u!1 &1015110060
 GameObject:
@@ -19691,8 +19696,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502813748}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06975647, y: 0, z: 0, w: 0.9975641}
-  m_LocalPosition: {x: 0.07999992, y: 2.021, z: 1.346}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: -3.81, y: 1.9779999, z: 1.925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26691,6 +26696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa9a44ba6e6c7f4a9de590ae7d96aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   ammoPickupAmount: 15
 --- !u!65 &2047374677
 BoxCollider:
