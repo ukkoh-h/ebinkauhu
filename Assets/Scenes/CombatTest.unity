@@ -14342,7 +14342,7 @@ MonoBehaviour:
   text_ammo_pool: {fileID: 1812321341}
   text_health: {fileID: 1554504144}
   text_heal_pool: {fileID: 21027888}
-  text_interact: {fileID: 0}
+  text_interact: {fileID: 138706791}
 --- !u!1 &1167393819
 GameObject:
   m_ObjectHideFlags: 0
@@ -19696,8 +19696,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502813748}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06975647, y: 0, z: 0, w: 0.9975641}
-  m_LocalPosition: {x: 0.07999992, y: 2.021, z: 1.346}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: -3.81, y: 1.9779999, z: 1.925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
