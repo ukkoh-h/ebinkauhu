@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -52,7 +53,7 @@ public class monster : MonoBehaviour
         if (playerInHearingRange && noise) playerHeared = true;
         /*if (playerHeared && playerInSightRange) {playerHeared = false;}
         if (playerInSightRange) {Debug.Log("I SEE YOU!");}*/
-
+        
         if (!playerInSightRange && !playerInAttackRange && !playerHeared)
         {
             Patroling();
@@ -104,7 +105,6 @@ public class monster : MonoBehaviour
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
         walkPoint = new Vector3(player.position.x + randomX, player.position.y + 1, player.position.z + randomZ);
-        Debug.Log(walkPoint);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, groundLayer))
         {
