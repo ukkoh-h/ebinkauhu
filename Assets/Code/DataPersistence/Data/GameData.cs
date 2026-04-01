@@ -12,9 +12,9 @@ public class GameData
 
     public Vector3 playerPosition;
     //public Dictionary<string, bool> itemCollected
-    public Dictionary<string, bool> ammoCollected;
-    public Dictionary<string, bool> potionsCollected;
-    public Dictionary<string, bool> keysCollected;
+    public SerializableDictionary<string, bool> ammoCollected;
+    public SerializableDictionary<string, bool> potionsCollected;
+    public SerializableDictionary<string, bool> keysCollected;
 
     public bool hasWeapon_2;
 
@@ -42,9 +42,9 @@ public class GameData
         
         //Laitetaan halutut aloitus koordinaatit tilalle sit
         playerPosition = Vector3.zero;
-        ammoCollected = new Dictionary<string, bool>();
-        potionsCollected = new Dictionary<string, bool>();
-        keysCollected = new Dictionary<string, bool>();
+        ammoCollected = new SerializableDictionary<string, bool>();
+        potionsCollected = new SerializableDictionary<string, bool>();
+        keysCollected = new SerializableDictionary<string, bool>();
 
         this.hasWeapon_2 = false;
 
