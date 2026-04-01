@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class GameData
 {
-    public int deathCount;
     public int ammoPool;
     public int healthItemPool;
     public int playerHealth;
