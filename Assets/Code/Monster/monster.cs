@@ -7,6 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class monster : MonoBehaviour
 {
+    public Swinger swinger;
     public NavMeshAgent navAgent;
     public Transform player;
     public LayerMask groundLayer, playerLayer;
@@ -145,6 +146,7 @@ public class monster : MonoBehaviour
 
         if (!alreadyAttacked)
         {
+            swinger.Swing();
             transform.LookAt(player.position);
             alreadyAttacked = true;
             //animator.SetBool("Attack", true);
