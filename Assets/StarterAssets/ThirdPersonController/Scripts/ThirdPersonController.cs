@@ -13,7 +13,7 @@ namespace StarterAssets
     [RequireComponent(typeof(PlayerInput))]
     
 #endif
-    public class ThirdPersonController : MonoBehaviour, IDataPersistence
+    public class ThirdPersonController : MonoBehaviour
     {
         public monster monster;
         [Header("Player")]
@@ -120,16 +120,6 @@ namespace StarterAssets
             targetRotation = transform.rotation;
             qt = _playerInput.actions.FindAction("Quickturn");
         
-        }
-
-        public void LoadData(GameData data)
-        {
-            this.transform.position = data.playerPosition;
-        }
-
-        public void SaveData(ref GameData data)
-        {
-            data.playerPosition = this.transform.position;
         }
 
         private void Update()
