@@ -13,10 +13,14 @@ public class HUDManager : MonoBehaviour
     public TextMeshProUGUI text_health;
     public TextMeshProUGUI text_heal_pool;
 
+    public TextMeshProUGUI text_interact;
+
     void Start()
     {
         UpdateHealthText();
         UpdateAmmoText();
+
+        UpdateInteractText();
         
     }
 
@@ -27,6 +31,41 @@ public class HUDManager : MonoBehaviour
         UpdateAmmoText();
         
     }
+
+    public void UpdateInteractText()
+    {
+        /* if (!raycasthit) text_interact.text = $"";
+
+        if (raycasthit)
+        {
+            text_interact.text = $"Press E To Interact.";
+        } 
+        if (raycasthit)
+        {
+            text_interact.text = $"Door Is Locked.";
+            yield return new WaitForSeconds (2f);
+            text_interact.text = $"";
+        } 
+        if (raycasthit)
+        {
+            text_interact.text = $"Door Unlocked.";
+            yield return new WaitForSeconds (2f);
+            text_interact.text = $"";
+        } 
+        if (raycasthit)
+        {
+            text_interact.text = $"{AmmoPickup.ammoPickupAmount} Bolt(s)";
+            yield return new WaitForSeconds (2f);
+            text_interact.text = $"";
+        } 
+        if (raycasthit)
+        {
+            text_interact.text = $"{HealthPickup.healthPickupAmount} Potion(s)";
+            yield return new WaitForSeconds (2f);
+            text_interact.text = $"";
+        }  */
+    }
+
     public void UpdateHealthText()
     {
         if (playerStatus.playerHealth == 6)
