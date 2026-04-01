@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class KeyInteractable : MonoBehaviour, IInteractable
+public class lockedInteractable : MonoBehaviour
 {
-    [SerializeField] lockedStatus _doorLocked;
+    [SerializeField] lockedStatus lockStat;
     bool interactable = true;
     public void Interact()
     {
         if (interactable)
         {
-            _doorLocked.ChangeLocked();
+            lockStat.ChangeLocked();
             interactable = !interactable;
         }
     }
 }
-
