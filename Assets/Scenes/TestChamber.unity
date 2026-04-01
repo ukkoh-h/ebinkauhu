@@ -5762,8 +5762,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 535592125}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14911008, y: 0.85068244, z: -0.3461003, w: 0.36649722}
-  m_LocalPosition: {x: -9.133009, y: 6.213243, z: 13.427451}
+  m_LocalRotation: {x: -0.024182511, y: -0.18339953, z: -0.0045107272, w: 0.9827306}
+  m_LocalPosition: {x: 14.041245, y: 1.860915, z: -1.4336181}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6047,7 +6047,7 @@ MonoBehaviour:
     m_Bits: 8
   walkPointRange: 5
   patrolSpeed: 2
-  chaseSpeed: 10
+  chaseSpeed: 5
   timeBetweenAttacks: 1
   sightRange: 5
   hearingRange: 20
@@ -6063,7 +6063,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 100
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 1
   m_StoppingDistance: 0
@@ -6840,7 +6840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3fe217ccbbf04458e953a1e9b5a59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openSpeedMultiplier: 2
+  openSpeedMultiplier: 3
   doorOpenAngle: 140
 --- !u!1 &1079413528
 GameObject:
