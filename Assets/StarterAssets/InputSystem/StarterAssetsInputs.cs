@@ -12,6 +12,8 @@ namespace StarterAssets
 		public bool sprint;
 		public bool quickturn;
 
+		public bool aim;
+
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -33,6 +35,10 @@ namespace StarterAssets
 		{
 			QuickturnInput(value.isPressed);
 		}
+		public void OnAim(InputValue value)
+		{
+			AimInput(value.isPressed);
+		}
 #endif
 
 
@@ -48,6 +54,10 @@ namespace StarterAssets
 		public void QuickturnInput(bool newQuickturnState)
 		{
 			quickturn = newQuickturnState;
+		}
+		public void AimInput(bool newAimState)
+		{
+			aim = newAimState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

@@ -16,6 +16,9 @@ namespace StarterAssets
     public class ThirdPersonController : MonoBehaviour, IDataPersistence
     {
         public monster monster;
+        public Weapon weapon;
+        [SerializeField] GameObject _weapon;
+
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
@@ -25,6 +28,13 @@ namespace StarterAssets
 
         [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
+
+
+
+        [Tooltip("Move speed of the character in while aiming")]
+        public float MoveAimSpeed = 0f;
+
+
 
         [Tooltip("Tank controls turning speed")]
         public float turnSpeed = 180f;
@@ -37,6 +47,14 @@ namespace StarterAssets
 
         [Tooltip("turning speed while sprinting")]
         public float turnSprintSpeed = 140f;
+
+
+        [Tooltip("Turning speed while aiming")]
+        public float turnAimSpeed = 90f;
+
+
+
+
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -103,6 +121,7 @@ namespace StarterAssets
 
         private InputAction moveAction;
         InputAction qt;
+        InputAction aim;
         private Quaternion targetRotation;
 
         private void Start()
@@ -119,6 +138,7 @@ namespace StarterAssets
             moveAction = _playerInput.actions["Move"];
             targetRotation = transform.rotation;
             qt = _playerInput.actions.FindAction("Quickturn");
+            aim = _playerInput.actions.FindAction("Aim");
         
         }
 
@@ -174,6 +194,20 @@ namespace StarterAssets
             {
                 targetSpeed = ReverseSpeed;
                 targetTurnSpeed = turnReverseSpeed;
+            }
+
+            if(_input.aim)
+                {
+                    _weapon.SetActive(true);
+
+                    weapon.enabled = true;
+                    targetSpeed = MoveAimSpeed;
+                    targetTurnSpeed = turnAimSpeed;
+            }
+            else
+            {
+                _weapon.SetActive(false);
+                weapon.enabled = false;
             }
 
             /* float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
