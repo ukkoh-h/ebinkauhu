@@ -22,8 +22,8 @@ public class Bullet : MonoBehaviour
     {
         if(other.GetComponent<Target>() != null)
             other.GetComponent<Target>().health -= damage;
-        else if(other.GetComponent<MonsterHealth>() != null)
-            other.GetComponent<MonsterHealth>().health -= damage;
+        else if(other.GetComponent<monster>() != null)
+            other.GetComponent<monster>().health -= damage;
         Destroy(gameObject);
     }
 }

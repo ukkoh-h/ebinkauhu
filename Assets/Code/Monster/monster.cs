@@ -8,6 +8,18 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class monster : MonoBehaviour
 {
+    // Joni Koodi
+    public float health = 15;
+    public float maxHealth = 15;
+    public float cooldown = 8f;
+
+    public bool hitOnce = false;
+    public bool hitTwice = false;
+    public bool disable = false;
+
+    public AudioClip[] MonsterAudioClips;
+    [Range(0, 1)] public float MonsterAudioVolume = 0.5f;
+
     public Swinger swinger;
     public NavMeshAgent navAgent;
     public Transform player;
@@ -45,38 +57,91 @@ public class monster : MonoBehaviour
 
     private void Update()
     {
+        MonsterHealth();
+
         bool playerInHearingRange = Physics.CheckSphere(transform.position, hearingRange, playerLayer);
         bool playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
-        //Debug.Log(walkPointSet);
 
-        if (playerInHearingRange && noise) playerHeared = true;
-        /*if (playerHeared && playerInSightRange) {playerHeared = false;}
-        if (playerInSightRange) {Debug.Log("I SEE YOU!");}*/
+        if(disable == false) {
+            
+            //Debug.Log(walkPointSet);
+
+            if (playerInHearingRange && noise) playerHeared = true;
+            /*if (playerHeared && playerInSightRange) {playerHeared = false;}
+            if (playerInSightRange) {Debug.Log("I SEE YOU!");}*/
+            
+            if (!playerInSightRange && !playerInAttackRange && !playerHeared)
+            {
+                Patroling();
+                navAgent.speed = patrolSpeed;
+            }
+            else if (!playerInSightRange && !playerInAttackRange && playerHeared)
+            {
+                NavLastHeard();
+                navAgent.speed = chaseSpeed;
+            }
+            else  if (playerInSightRange && !playerInAttackRange)
+            {
+                ChasePlayer();
+                navAgent.speed = chaseSpeed;
+            }
+            else if (playerInAttackRange && playerInSightRange)
+            {
+                AttackPlayer();
+            }
+            //else if (!playerInSightRange /*&& takeDamage*/)
+            //{
+            //    ChasePlayer();
+            //}
+        }
         
-        if (!playerInSightRange && !playerInAttackRange && !playerHeared)
+    }
+
+    private void MonsterHealth() 
+    {
+        if(health == (maxHealth / 3) * 2 )
         {
-            Patroling();
-            navAgent.speed = patrolSpeed;
+            if(hitOnce == false) 
+            {
+                OnHit();
+                hitOnce = true;
+            }
         }
-        else if (!playerInSightRange && !playerInAttackRange && playerHeared)
+        
+        if(health == maxHealth / 3)
         {
-            NavLastHeard();
-            navAgent.speed = chaseSpeed;
+            if(hitTwice == false) 
+            {
+                OnHit();
+                hitTwice = true;
+            }
         }
-        else  if (playerInSightRange && !playerInAttackRange)
+
+        if(health <= 0)
         {
-            ChasePlayer();
-            navAgent.speed = chaseSpeed;
+            if (MonsterAudioClips.Length > 0) OnHit();
+
+            disable = true;
+            Invoke("Activate", cooldown);
         }
-        else if (playerInAttackRange && playerInSightRange)
-        {
-            AttackPlayer();
-        }
-        //else if (!playerInSightRange /*&& takeDamage*/)
-        //{
-        //    ChasePlayer();
-        //}
+    }
+
+    private void OnHit()
+    {
+        if (MonsterAudioClips.Length > 0)
+            {
+                var index = Random.Range(0, MonsterAudioClips.Length);
+                AudioSource.PlayClipAtPoint(MonsterAudioClips[index], transform.TransformPoint(this.transform.position), MonsterAudioVolume);
+            }
+    }
+
+    void Activate()
+    {
+        disable = false;
+        health = maxHealth;
+        hitOnce = false;
+        hitTwice = false;
     }
 
     private void Patroling()
