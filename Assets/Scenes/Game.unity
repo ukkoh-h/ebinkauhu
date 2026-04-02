@@ -875,7 +875,7 @@ GameObject:
   - component: {fileID: 17796808}
   - component: {fileID: 17796810}
   - component: {fileID: 17796809}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4170,7 +4170,7 @@ GameObject:
   - component: {fileID: 70960378}
   - component: {fileID: 70960380}
   - component: {fileID: 70960379}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8083,7 +8083,7 @@ GameObject:
   - component: {fileID: 122351634}
   - component: {fileID: 122351636}
   - component: {fileID: 122351635}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9903,7 +9903,7 @@ GameObject:
   - component: {fileID: 145915124}
   - component: {fileID: 145915125}
   - component: {fileID: 145915126}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10259,7 +10259,7 @@ GameObject:
   - component: {fileID: 153496731}
   - component: {fileID: 153496733}
   - component: {fileID: 153496732}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11071,7 +11071,7 @@ GameObject:
   - component: {fileID: 166184278}
   - component: {fileID: 166184280}
   - component: {fileID: 166184279}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12568,7 +12568,7 @@ GameObject:
   - component: {fileID: 201751763}
   - component: {fileID: 201751765}
   - component: {fileID: 201751764}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13620,7 +13620,7 @@ GameObject:
   - component: {fileID: 227304743}
   - component: {fileID: 227304745}
   - component: {fileID: 227304744}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14705,7 +14705,7 @@ GameObject:
   - component: {fileID: 245089830}
   - component: {fileID: 245089831}
   - component: {fileID: 245089832}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15658,7 +15658,7 @@ GameObject:
   - component: {fileID: 258552276}
   - component: {fileID: 258552278}
   - component: {fileID: 258552277}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19648,7 +19648,7 @@ GameObject:
   - component: {fileID: 349266261}
   - component: {fileID: 349266263}
   - component: {fileID: 349266262}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22260,7 +22260,7 @@ GameObject:
   - component: {fileID: 445785904}
   - component: {fileID: 445785906}
   - component: {fileID: 445785905}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22599,7 +22599,7 @@ GameObject:
   - component: {fileID: 455946758}
   - component: {fileID: 455946760}
   - component: {fileID: 455946759}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23634,7 +23634,7 @@ GameObject:
   - component: {fileID: 484889177}
   - component: {fileID: 484889179}
   - component: {fileID: 484889178}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24608,7 +24608,7 @@ GameObject:
   - component: {fileID: 499644387}
   - component: {fileID: 499644389}
   - component: {fileID: 499644388}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30020,7 +30020,7 @@ GameObject:
   - component: {fileID: 623323775}
   - component: {fileID: 623323777}
   - component: {fileID: 623323776}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31961,7 +31961,7 @@ GameObject:
   - component: {fileID: 691768686}
   - component: {fileID: 691768688}
   - component: {fileID: 691768687}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33871,7 +33871,7 @@ GameObject:
   - component: {fileID: 720469009}
   - component: {fileID: 720469011}
   - component: {fileID: 720469010}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34048,7 +34048,7 @@ GameObject:
   - component: {fileID: 726954108}
   - component: {fileID: 726954110}
   - component: {fileID: 726954109}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36010,7 +36010,7 @@ GameObject:
   - component: {fileID: 780870525}
   - component: {fileID: 780870527}
   - component: {fileID: 780870526}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36079,7 +36079,7 @@ GameObject:
   - component: {fileID: 783013330}
   - component: {fileID: 783013332}
   - component: {fileID: 783013331}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36807,7 +36807,7 @@ GameObject:
   - component: {fileID: 790572356}
   - component: {fileID: 790572358}
   - component: {fileID: 790572357}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48849,7 +48849,7 @@ GameObject:
   - component: {fileID: 995616357}
   - component: {fileID: 995616359}
   - component: {fileID: 995616358}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53384,7 +53384,7 @@ GameObject:
   - component: {fileID: 1090107490}
   - component: {fileID: 1090107492}
   - component: {fileID: 1090107491}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55409,7 +55409,7 @@ GameObject:
   - component: {fileID: 1158144219}
   - component: {fileID: 1158144221}
   - component: {fileID: 1158144220}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60752,7 +60752,7 @@ GameObject:
   - component: {fileID: 1263194158}
   - component: {fileID: 1263194160}
   - component: {fileID: 1263194159}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61581,7 +61581,7 @@ GameObject:
   - component: {fileID: 1276750773}
   - component: {fileID: 1276750775}
   - component: {fileID: 1276750774}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64342,7 +64342,7 @@ GameObject:
   - component: {fileID: 1332365988}
   - component: {fileID: 1332365990}
   - component: {fileID: 1332365989}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66494,7 +66494,7 @@ GameObject:
   - component: {fileID: 1371419657}
   - component: {fileID: 1371419659}
   - component: {fileID: 1371419658}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67621,7 +67621,7 @@ GameObject:
   - component: {fileID: 1381365959}
   - component: {fileID: 1381365961}
   - component: {fileID: 1381365960}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70262,7 +70262,7 @@ GameObject:
   - component: {fileID: 1402265223}
   - component: {fileID: 1402265225}
   - component: {fileID: 1402265224}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74325,7 +74325,7 @@ GameObject:
   - component: {fileID: 1543551892}
   - component: {fileID: 1543551894}
   - component: {fileID: 1543551893}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74394,7 +74394,7 @@ GameObject:
   - component: {fileID: 1546266089}
   - component: {fileID: 1546266091}
   - component: {fileID: 1546266090}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78185,7 +78185,7 @@ GameObject:
   - component: {fileID: 1551070751}
   - component: {fileID: 1551070753}
   - component: {fileID: 1551070752}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92536,7 +92536,7 @@ GameObject:
   - component: {fileID: 1847256322}
   - component: {fileID: 1847256324}
   - component: {fileID: 1847256323}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102598,7 +102598,7 @@ GameObject:
   - component: {fileID: 2020732530}
   - component: {fileID: 2020732532}
   - component: {fileID: 2020732531}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103924,7 +103924,7 @@ GameObject:
   - component: {fileID: 2052529863}
   - component: {fileID: 2052529865}
   - component: {fileID: 2052529864}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103993,7 +103993,7 @@ GameObject:
   - component: {fileID: 2054896011}
   - component: {fileID: 2054896013}
   - component: {fileID: 2054896012}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105543,7 +105543,7 @@ GameObject:
   - component: {fileID: 2083063036}
   - component: {fileID: 2083063038}
   - component: {fileID: 2083063037}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105612,7 +105612,7 @@ GameObject:
   - component: {fileID: 2083847677}
   - component: {fileID: 2083847679}
   - component: {fileID: 2083847678}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105738,7 +105738,7 @@ GameObject:
   - component: {fileID: 2089308579}
   - component: {fileID: 2089308581}
   - component: {fileID: 2089308580}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cameratrigger (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
