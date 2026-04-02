@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    public float health;
+    public float health = 5;
+    public float maxHealth = 5;
+    public float cooldown = 8f;
     //public float respawnTime;
     public AudioClip[] WeaponAudioClips;
     [Range(0, 1)] public float WeaponAudioVolume = 0.5f;
@@ -14,7 +16,7 @@ public class Target : MonoBehaviour
             //Destroy(gameObject);
             AudioSource.PlayClipAtPoint(WeaponAudioClips[0], transform.TransformPoint(this.transform.position), WeaponAudioVolume);
             gameObject.SetActive(false);
-            Invoke("Activate", 8f);
+            Invoke("Activate", cooldown);
         }
         
             
@@ -22,7 +24,7 @@ public class Target : MonoBehaviour
     void Activate()
         {
             gameObject.SetActive(true);
-            health = 5;
+            health = maxHealth;
         }
 
 

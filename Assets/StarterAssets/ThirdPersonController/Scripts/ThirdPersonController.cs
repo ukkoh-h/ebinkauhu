@@ -11,9 +11,14 @@ namespace StarterAssets
     [RequireComponent(typeof(CharacterController))]
 #if ENABLE_INPUT_SYSTEM 
     [RequireComponent(typeof(PlayerInput))]
+    
 #endif
-    public class ThirdPersonController : MonoBehaviour
+    public class ThirdPersonController : MonoBehaviour, IDataPersistence
     {
+        public monster monster;
+        public Weapon weapon;
+        [SerializeField] GameObject _weapon;
+
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
@@ -23,6 +28,13 @@ namespace StarterAssets
 
         [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
+
+
+
+        [Tooltip("Move speed of the character in while aiming")]
+        public float MoveAimSpeed = 0f;
+
+
 
         [Tooltip("Tank controls turning speed")]
         public float turnSpeed = 180f;
@@ -35,6 +47,14 @@ namespace StarterAssets
 
         [Tooltip("turning speed while sprinting")]
         public float turnSprintSpeed = 140f;
+
+
+        [Tooltip("Turning speed while aiming")]
+        public float turnAimSpeed = 90f;
+
+
+
+
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -101,10 +121,8 @@ namespace StarterAssets
 
         private InputAction moveAction;
         InputAction qt;
-        public float smooth = 5f; // Rotation speed
+        InputAction aim;
         private Quaternion targetRotation;
-        /* public int tapCount = 2;
-        public float tapDelay = 0.5; */
 
         private void Start()
         {
@@ -120,7 +138,18 @@ namespace StarterAssets
             moveAction = _playerInput.actions["Move"];
             targetRotation = transform.rotation;
             qt = _playerInput.actions.FindAction("Quickturn");
+            aim = _playerInput.actions.FindAction("Aim");
         
+        }
+
+        public void LoadData(GameData data)
+        {
+            this.transform.position = data.playerPosition;
+        }
+
+        public void SaveData(ref GameData data)
+        {
+            data.playerPosition = this.transform.position;
         }
 
         private void Update()
@@ -129,6 +158,9 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            if (_speed > (SprintSpeed - 0.5)) {
+                monster.MakeNoise();
+            }
         }
         private void AssignAnimationIDs()
         {
@@ -161,7 +193,21 @@ namespace StarterAssets
             if (_input.move == Vector2.down || _input.sprint && inputVertical < 0 || inputHorizontal != 0 && inputVertical < 0 ) 
             {
                 targetSpeed = ReverseSpeed;
-                targetTurnSpeed = turnSpeed;
+                targetTurnSpeed = turnReverseSpeed;
+            }
+
+            if(_input.aim)
+                {
+                    _weapon.SetActive(true);
+
+                    weapon.enabled = true;
+                    targetSpeed = MoveAimSpeed;
+                    targetTurnSpeed = turnAimSpeed;
+            }
+            else
+            {
+                _weapon.SetActive(false);
+                weapon.enabled = false;
             }
 
             /* float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
@@ -245,19 +291,19 @@ namespace StarterAssets
                 } */
                 if (_input.sprint) _animationBlend = 5.335f; else _animationBlend = 2.0f;
                 if (inputVertical == 0) 
-            {
-                if (_input.move == Vector2.zero) 
                 {
-                    _animationBlend = 0f;
-                } else {
-                    _animationBlend = 2f;
+                    if (_input.move == Vector2.zero) 
+                    {
+                        _animationBlend = 0f;
+                    } else {
+                        _animationBlend = 2f;
+                    }
+
+                    
+
+                    _animator.SetFloat(_animIDSpeed, _animationBlend);
+                    _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
                 }
-
-                
-
-                _animator.SetFloat(_animIDSpeed, _animationBlend);
-                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
-            }
 
             if (_input.move == Vector2.down || _input.sprint && inputVertical < 0 || inputHorizontal != 0 && inputVertical < 0 ) 
             {
@@ -286,12 +332,12 @@ namespace StarterAssets
 
                 // Smoothly interpolate towards the target rotation every frame
                 //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smooth * Time.deltaTime);
-                if(qt.WasPerformedThisFrame())
+                if(qt.triggered)
                 {
                     //transform.rotation*Quaternion.AngleAxis(180, Vector3.up);
                     transform.rotation*=Quaternion.AngleAxis(180, Vector3.up);
                     
-                    //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotationSmoothTime);
+                    //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5f);
                 }
         }
 
