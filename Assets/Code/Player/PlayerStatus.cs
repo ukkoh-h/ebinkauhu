@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerStatus : MonoBehaviour, IDataPersistence
 {
-    public float respawnTimer = 2;
+    public float respawnTimer = 1;
 
     public bool hasWeapon_1;
     public bool hasWeapon_2;

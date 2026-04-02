@@ -20,6 +20,14 @@ public class monster : MonoBehaviour
     public AudioClip[] MonsterAudioClips;
     [Range(0, 1)] public float MonsterAudioVolume = 0.5f;
 
+    //private float _animationBlend;
+
+    //private int _animIDSpeed;
+    //private int _animIDMotionSpeed;
+
+    //private Animator _animator;
+    //private bool _hasAnimator;
+
     public Swinger swinger;
     public NavMeshAgent navAgent;
     public Transform player;
@@ -53,11 +61,19 @@ public class monster : MonoBehaviour
         //animator = GetComponent<Animator>();
         player = GameObject.Find("Player").transform;
         navAgent = GetComponent<NavMeshAgent>();
+        
+    }
+
+    private void Start()
+    {
+        //_hasAnimator = TryGetComponent(out _animator);
+        //AssignAnimationIDs();
     }
 
     private void Update()
     {
         MonsterHealth();
+        //_hasAnimator = TryGetComponent(out _animator);
 
         bool playerInHearingRange = Physics.CheckSphere(transform.position, hearingRange, playerLayer);
         bool playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
@@ -75,6 +91,7 @@ public class monster : MonoBehaviour
             {
                 Patroling();
                 navAgent.speed = patrolSpeed;
+
             }
             else if (!playerInSightRange && !playerInAttackRange && playerHeared)
             {
@@ -97,6 +114,11 @@ public class monster : MonoBehaviour
         }
         
     }
+    /* private void AssignAnimationIDs()
+    {
+        _animIDSpeed = Animator.StringToHash("Speed");
+        _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+    } */
 
     private void MonsterHealth() 
     {
