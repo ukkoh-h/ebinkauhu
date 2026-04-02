@@ -8789,6 +8789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20183e1019d91dd43a7d3e8741e7f557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnTimer: 2
   hasWeapon_1: 0
   hasWeapon_2: 0
   hasKey_1: 0
@@ -8802,6 +8803,7 @@ MonoBehaviour:
   playerHealth: 6
   healthItemPool: 5
   ammoPool: 25
+  respawnPoint: {x: -8, y: 0, z: -5}
   PlayerAudioClips: []
   PlayerAudioVolume: 0.5
   hitOnce: 0
@@ -25056,7 +25058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6c69430c69bf89449a508f0e85ab2395, type: 3}
       propertyPath: m_Name
-      value: Vamppyyri_Idle 1
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6c69430c69bf89449a508f0e85ab2395, type: 3}
       propertyPath: m_Layer
@@ -27778,6 +27780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20183e1019d91dd43a7d3e8741e7f557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnTimer: 2
   hasWeapon_1: 0
   hasWeapon_2: 0
   hasKey_1: 0
@@ -27791,6 +27794,7 @@ MonoBehaviour:
   playerHealth: 6
   healthItemPool: 5
   ammoPool: 25
+  respawnPoint: {x: -8, y: 0, z: -5}
   PlayerAudioClips: []
   PlayerAudioVolume: 0.5
   hitOnce: 0
@@ -28405,6 +28409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20183e1019d91dd43a7d3e8741e7f557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnTimer: 2
   hasWeapon_1: 0
   hasWeapon_2: 0
   hasKey_1: 0
@@ -28418,6 +28423,7 @@ MonoBehaviour:
   playerHealth: 6
   healthItemPool: 5
   ammoPool: 25
+  respawnPoint: {x: -8, y: 0, z: -5}
   PlayerAudioClips:
   - {fileID: 8300000, guid: b34e375834edccb4d948cd031ec3019a, type: 3}
   - {fileID: 8300000, guid: 64893e7cd270c2e4aafba93c03e54002, type: 3}
@@ -29313,10 +29319,12 @@ SceneRoots:
   m_Roots:
   - {fileID: 1502813753}
   - {fileID: 574061580}
+  - {fileID: 1200569456}
   - {fileID: 1816247654}
   - {fileID: 1287977736}
   - {fileID: 997652664}
   - {fileID: 265239769}
+  - {fileID: 1697927514}
   - {fileID: 304913210}
   - {fileID: 1251155847}
   - {fileID: 53523175}
@@ -29330,5 +29338,3 @@ SceneRoots:
   - {fileID: 1872851400}
   - {fileID: 1165896146}
   - {fileID: 356150887}
-  - {fileID: 1697927514}
-  - {fileID: 1200569456}

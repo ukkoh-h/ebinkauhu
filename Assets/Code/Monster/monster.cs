@@ -8,6 +8,18 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class monster : MonoBehaviour
 {
+    // Joni Koodi
+    public float health = 15;
+    public float maxHealth = 15;
+    public float cooldown = 8f;
+
+    public bool hitOnce = false;
+    public bool hitTwice = false;
+    public bool disable = false;
+
+    public AudioClip[] MonsterAudioClips;
+    [Range(0, 1)] public float MonsterAudioVolume = 0.5f;
+
     public Swinger swinger;
     public NavMeshAgent navAgent;
     public Transform player;
@@ -36,17 +48,6 @@ public class monster : MonoBehaviour
     private bool navigating = false;
     /*private bool takeDamage;*/
 
-    // Joni Koodi
-    public float health = 15;
-    public float maxHealth = 15;
-    public float cooldown = 8f;
-
-    public bool hitOnce = false;
-    public bool hitTwice = false;
-
-    public AudioClip[] MonsterAudioClips;
-    [Range(0, 1)] public float MonsterAudioVolume = 0.5f;
-
     private void Awake()
     {
         //animator = GetComponent<Animator>();
@@ -57,38 +58,44 @@ public class monster : MonoBehaviour
     private void Update()
     {
         MonsterHealth();
+
         bool playerInHearingRange = Physics.CheckSphere(transform.position, hearingRange, playerLayer);
         bool playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
-        //Debug.Log(walkPointSet);
 
-        if (playerInHearingRange && noise) playerHeared = true;
-        /*if (playerHeared && playerInSightRange) {playerHeared = false;}
-        if (playerInSightRange) {Debug.Log("I SEE YOU!");}*/
+        if(disable == false) {
+            
+            //Debug.Log(walkPointSet);
+
+            if (playerInHearingRange && noise) playerHeared = true;
+            /*if (playerHeared && playerInSightRange) {playerHeared = false;}
+            if (playerInSightRange) {Debug.Log("I SEE YOU!");}*/
+            
+            if (!playerInSightRange && !playerInAttackRange && !playerHeared)
+            {
+                Patroling();
+                navAgent.speed = patrolSpeed;
+            }
+            else if (!playerInSightRange && !playerInAttackRange && playerHeared)
+            {
+                NavLastHeard();
+                navAgent.speed = chaseSpeed;
+            }
+            else  if (playerInSightRange && !playerInAttackRange)
+            {
+                ChasePlayer();
+                navAgent.speed = chaseSpeed;
+            }
+            else if (playerInAttackRange && playerInSightRange)
+            {
+                AttackPlayer();
+            }
+            //else if (!playerInSightRange /*&& takeDamage*/)
+            //{
+            //    ChasePlayer();
+            //}
+        }
         
-        if (!playerInSightRange && !playerInAttackRange && !playerHeared)
-        {
-            Patroling();
-            navAgent.speed = patrolSpeed;
-        }
-        else if (!playerInSightRange && !playerInAttackRange && playerHeared)
-        {
-            NavLastHeard();
-            navAgent.speed = chaseSpeed;
-        }
-        else  if (playerInSightRange && !playerInAttackRange)
-        {
-            ChasePlayer();
-            navAgent.speed = chaseSpeed;
-        }
-        else if (playerInAttackRange && playerInSightRange)
-        {
-            AttackPlayer();
-        }
-        //else if (!playerInSightRange /*&& takeDamage*/)
-        //{
-        //    ChasePlayer();
-        //}
     }
 
     private void MonsterHealth() 
@@ -115,7 +122,7 @@ public class monster : MonoBehaviour
         {
             if (MonsterAudioClips.Length > 0) OnHit();
 
-            gameObject.SetActive(false);
+            disable = true;
             Invoke("Activate", cooldown);
         }
     }
@@ -131,7 +138,7 @@ public class monster : MonoBehaviour
 
     void Activate()
     {
-        gameObject.SetActive(true);
+        disable = false;
         health = maxHealth;
         hitOnce = false;
         hitTwice = false;

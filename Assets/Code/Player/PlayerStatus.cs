@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerStatus : MonoBehaviour, IDataPersistence
 {
+    public float respawnTimer = 2;
+
     public bool hasWeapon_1;
     public bool hasWeapon_2;
 
@@ -27,6 +29,8 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
     public int playerHealth = 6;
     public int healthItemPool = 5;
     public int ammoPool = 25;
+
+    public Vector3 respawnPoint = new Vector3(-8, 0, -5);
 
     private PlayerInput _playerInput;
     InputAction heal;
@@ -80,6 +84,12 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
         {
             AddHealth();
         } 
+        if(playerHealth == 0)
+        {
+            this.transform.position = respawnPoint;
+            Invoke("Respawn", respawnTimer);
+            //playerHealth = playerMaxHealth;
+        }
 
         /* if(playerHealth == (playerMaxHealth / 3) * 2 )
         {
@@ -105,6 +115,10 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
             //gameObject.SetActive(false);
             //Invoke("ActivatePlayer", cooldown);
         } */
+    }
+    private void Respawn()
+    {
+        playerHealth = playerMaxHealth;
     }
 
     private void OnTriggerEnter(Collider other)
