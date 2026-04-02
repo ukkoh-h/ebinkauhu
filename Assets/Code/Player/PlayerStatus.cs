@@ -109,20 +109,20 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<MonsterHealth>() != null)
+        /* if(other.GetComponent<MonsterHealth>() != null)
         {
             if(playerHealth >= 1)
             {
                 OnHit();
                 playerHealth -= 1;
             }
-            /* if(playerHealth == 1)
-            {
-                OnHit();
-                playerHealth -= 1;
-            } */
+            //if(playerHealth == 1)
+            //{
+                //OnHit();
+                //playerHealth -= 1;
+            //}
 
-        }
+        } */
             
 
     }
