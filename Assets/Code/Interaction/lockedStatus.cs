@@ -8,6 +8,7 @@ public class lockedStatus : MonoBehaviour
     public bool locked1 = false;
     public bool locked2 = false;
     public bool locked3 = false;
+    public bool lockedForPlayer = false; 
 
     public void LockedStatus1()
     {
@@ -44,6 +45,13 @@ public class lockedStatus : MonoBehaviour
         {
             locked3 = false;
             Debug.Log("IT'S UNLOCKED!");
+        }
+    }
+    public void MonsterChangeLocked()
+    {
+        if (lockedForPlayer)
+        {
+            locked1 = !locked1;
         }
     }
 }
