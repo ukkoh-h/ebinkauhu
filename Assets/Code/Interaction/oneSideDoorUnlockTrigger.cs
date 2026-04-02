@@ -6,13 +6,18 @@ public class oneSideDoorUnlockTrigger : MonoBehaviour
 
     public bool doorDirection;
     public Transform monster;
+    bool firstTime = true;
     public void Interact()
     {
 
             if (!doorDirection)
             {
                 _lockedStatus.LockedStatus2();
-                _lockedStatus.ChangeLocked();
+                if (firstTime) 
+                {
+                    _lockedStatus.ChangeLocked();
+                    firstTime=!firstTime;
+                }
             } else
             {
                 _lockedStatus.LockedStatus1();
