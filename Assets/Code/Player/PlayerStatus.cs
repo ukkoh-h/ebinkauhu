@@ -5,6 +5,8 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
 {
     public float respawnTimer = 1;
 
+    [SerializeField] GameObject deathMenu;
+
     public bool hasWeapon_1;
     public bool hasWeapon_2;
 
@@ -84,10 +86,16 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
         {
             AddHealth();
         } 
-        if(playerHealth == 0)
+        if(playerHealth <= 0)
         {
-            this.transform.position = respawnPoint;
-            Invoke("Respawn", respawnTimer);
+            //this.transform.position = respawnPoint;
+            //Invoke("Respawn", respawnTimer);
+            deathMenu.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            AudioListener.pause = true;
+
+            
             //playerHealth = playerMaxHealth;
         }
 
@@ -138,11 +146,19 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
         } */
     }
 
-    private void OnHit()
+    public void OnHit()
     {
         if (PlayerAudioClips.Length > 0)
             {
-                var index = Random.Range(0, PlayerAudioClips.Length);
+                var index = Random.Range(0, PlayerAudioClips.Length - 2);
+                AudioSource.PlayClipAtPoint(PlayerAudioClips[index], transform.TransformPoint(this.transform.position), PlayerAudioVolume);
+            }
+    }
+    public void OnDeath()
+    {
+        if (PlayerAudioClips.Length > 0)
+            {
+                var index = Random.Range(9, PlayerAudioClips.Length);
                 AudioSource.PlayClipAtPoint(PlayerAudioClips[index], transform.TransformPoint(this.transform.position), PlayerAudioVolume);
             }
     }

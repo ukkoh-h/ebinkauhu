@@ -105,13 +105,14 @@ public class Weapon : MonoBehaviour, IDataPersistence
     {
         readyToShoot = true;
     }
-    private void Reload()
+    public void Reload()
     {
         if (playerStatus.ammoPool > 0)
         {
             reloading = true;
             AudioSource.PlayClipAtPoint(WeaponAudioClips[2], transform.TransformPoint(_controller.center), WeaponAudioVolume);
-            Invoke("ReloadFinish", reloadTime);
+            //Invoke("ReloadFinish", reloadTime);
+            ReloadFinish();
         }
         else
         {

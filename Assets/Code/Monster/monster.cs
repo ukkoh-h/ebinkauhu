@@ -133,7 +133,7 @@ public class monster : MonoBehaviour
 
     private void MonsterHealth() 
     {
-        if(health == (maxHealth / 3) * 2 )
+        if(health == maxHealth / 3 * 2 )
         {
             if(hitOnce == false) 
             {
@@ -151,7 +151,7 @@ public class monster : MonoBehaviour
             }
         }
 
-        if(health <= 0)
+        if(health <= 0 && disable == false)
         {
             if (MonsterAudioClips.Length > 0) OnHit();
 

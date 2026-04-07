@@ -3733,7 +3733,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248248290031073042, guid: 76a6486fd31683c42865930c3eb39771, type: 3}
       propertyPath: id
-      value: 34f9a202-a453-4325-9d5e-04a65415bf95
+      value: b75ca3a1-d75c-4266-994b-57b923c3918b
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9373,7 +9373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20183e1019d91dd43a7d3e8741e7f557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTimer: 2
+  respawnTimer: 1
   hasWeapon_1: 0
   hasWeapon_2: 0
   hasKey_1: 0
@@ -9388,7 +9388,17 @@ MonoBehaviour:
   healthItemPool: 5
   ammoPool: 25
   respawnPoint: {x: -8, y: 0, z: -5}
-  PlayerAudioClips: []
+  PlayerAudioClips:
+  - {fileID: 8300000, guid: b34e375834edccb4d948cd031ec3019a, type: 3}
+  - {fileID: 8300000, guid: 64893e7cd270c2e4aafba93c03e54002, type: 3}
+  - {fileID: 8300000, guid: 596b09f7bef4ae24fb79a1cb6e354b0a, type: 3}
+  - {fileID: 8300000, guid: 2512ccf264524bc41b86b8c79812c3de, type: 3}
+  - {fileID: 8300000, guid: 616c57d1331610348a63edb6e1a47c3f, type: 3}
+  - {fileID: 8300000, guid: 5a7b990043253af46910265e6916dc73, type: 3}
+  - {fileID: 8300000, guid: 42c58aa480ed22549b64e3216afa09d0, type: 3}
+  - {fileID: 8300000, guid: 0405d0e8a07728649b2c9c240fa973f5, type: 3}
+  - {fileID: 8300000, guid: 632f9c008bc30bf49ae4758d10193ccf, type: 3}
+  - {fileID: 8300000, guid: 953ed16fa8f12e44989804a31142af4b, type: 3}
   PlayerAudioVolume: 0.5
   hitOnce: 0
   hitTwice: 0
@@ -10557,7 +10567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248248290031073042, guid: 76a6486fd31683c42865930c3eb39771, type: 3}
       propertyPath: id
-      value: f562ec35-3f61-43ee-8a54-314736f5cf51
+      value: b3d6e0b7-e0ba-44a5-ace3-3f83d6981e52
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11903,7 +11913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248248290031073042, guid: 76a6486fd31683c42865930c3eb39771, type: 3}
       propertyPath: id
-      value: 4c8456fa-b16e-444d-b854-d52abe6d6c90
+      value: 921fcb9d-e6f3-485d-bb46-8009381bd675
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14852,7 +14862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248248290031073042, guid: 76a6486fd31683c42865930c3eb39771, type: 3}
       propertyPath: id
-      value: c8bbb777-979a-4e59-892e-4ab18bab5de7
+      value: 9d550972-792d-411d-b171-a1040144c2b5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16285,6 +16295,7 @@ MonoBehaviour:
   text_ammo_pool: {fileID: 1812321341}
   text_heal_pool: {fileID: 21027888}
   text_interact: {fileID: 138706791}
+  interactText: 
 --- !u!1 &1167393819
 GameObject:
   m_ObjectHideFlags: 0
@@ -16505,7 +16516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248248290031073042, guid: 76a6486fd31683c42865930c3eb39771, type: 3}
       propertyPath: id
-      value: fd06ff93-95fc-4f9d-97d4-b8801870864a
+      value: f709efdf-13dc-40b9-90ad-3d2a5a29ca18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19153,7 +19164,11 @@ MonoBehaviour:
   hitOnce: 0
   hitTwice: 0
   disable: 0
-  MonsterAudioClips: []
+  MonsterAudioClips:
+  - {fileID: 8300000, guid: d36456a9f6ff6694c8e13e0e4315e4ef, type: 3}
+  - {fileID: 8300000, guid: 7918437dbd1b01a4eb41b7ab0dbcc5e3, type: 3}
+  - {fileID: 8300000, guid: 3026dc186b857794c9b6da9469cc0670, type: 3}
+  - {fileID: 8300000, guid: 84862a8be460deb4bb4aa428ec1cee67, type: 3}
   MonsterAudioVolume: 0.5
   swinger: {fileID: 1637600405}
   navAgent: {fileID: 1298014249}
@@ -19171,6 +19186,7 @@ MonoBehaviour:
   sightRange: 3
   hearingRange: 20
   attackRange: 1.5
+  cantSee: 0
 --- !u!195 &1298014249
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -19809,7 +19825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -20855,7 +20871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248248290031073042, guid: 76a6486fd31683c42865930c3eb39771, type: 3}
       propertyPath: id
-      value: 098ac82f-79fc-488b-9543-9d4bd31a0fb8
+      value: 653de6ac-94eb-482a-96d4-0d48d8857e06
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22053,7 +22069,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -22079,8 +22095,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502813748}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.21643959, y: -0.0000018846019, z: 0.0000085008905, w: 0.976296}
-  m_LocalPosition: {x: -7.62, y: 3.1799998, z: -4.8499994}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: -3.81, y: 1.9779999, z: 1.925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22352,7 +22368,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0.007082213, y: -350}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 101, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1536311750
 MonoBehaviour:
@@ -22368,7 +22384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -23537,7 +23553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248248290031073042, guid: 76a6486fd31683c42865930c3eb39771, type: 3}
       propertyPath: id
-      value: 1996e4c0-f337-4e63-a0d8-ed4cf9a27f52
+      value: 223fd5f3-4dea-4768-ad7e-8b1294fdb223
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23861,7 +23877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248248290031073042, guid: 76a6486fd31683c42865930c3eb39771, type: 3}
       propertyPath: id
-      value: d7decc46-6f1b-4893-81e7-ac4d559ab1ec
+      value: 8087630b-38a0-44f6-81fa-a2b81d10a50b
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26614,7 +26630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248248290031073042, guid: 76a6486fd31683c42865930c3eb39771, type: 3}
       propertyPath: id
-      value: e408f36a-154f-42bd-9876-f2c0679168d0
+      value: ca39aef0-548d-48fa-aec7-ea9f0e8a1733
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28739,7 +28755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248248290031073042, guid: 76a6486fd31683c42865930c3eb39771, type: 3}
       propertyPath: id
-      value: 470368d7-bb16-4587-b10f-3cd0844f4893
+      value: 3cc8f357-8773-4e64-a6c4-1642992c89f1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28797,7 +28813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -29671,7 +29687,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -0.4952, y: -443.98047}
-  m_SizeDelta: {x: 694.2982, y: 353.3452}
+  m_SizeDelta: {x: 740, y: 353.3452}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2075504265
 MonoBehaviour:
@@ -29687,7 +29703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -30369,7 +30385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248248290031073042, guid: 76a6486fd31683c42865930c3eb39771, type: 3}
       propertyPath: id
-      value: 3002d5f1-5268-45bf-9db6-b968691b09fc
+      value: 6dab87ec-c5ab-43d9-9e01-b449f2745e97
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
