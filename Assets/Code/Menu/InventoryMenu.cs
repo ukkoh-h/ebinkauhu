@@ -9,6 +9,7 @@ public class InventoryMenu : MonoBehaviour
 
     public PlayerStatus playerStatus;
     public Weapon weapon;
+    public TextMeshProUGUI text_ammo;
     public TextMeshProUGUI text_health;
     public TextMeshProUGUI text_ammo_pool;
     public TextMeshProUGUI text_heal_pool;
@@ -60,9 +61,34 @@ public class InventoryMenu : MonoBehaviour
     }
     public void UpdateAmmoText()
     {
+        if (weapon.ammoLeft == 5)
+        {
+            text_ammo.text = $"↑↑↑↑↑";
+        }
+        else if (weapon.ammoLeft == 4)
+        {
+            text_ammo.text = $"↑↑↑↑";
+        }
+        else if (weapon.ammoLeft == 3)
+        {
+            text_ammo.text = $"↑↑↑";
+        }
+        else if (weapon.ammoLeft == 2)
+        {
+            text_ammo.text = $"↑↑";
+        } 
+        else if (weapon.ammoLeft == 1)
+        {
+            text_ammo.text = $"↑";
+        } 
+        else
+        {
+            text_ammo.text = $"";
+        }
         text_ammo_pool.text = $"Use to reload weapon. No. loaded/held: {weapon.ammoLeft}/{playerStatus.ammoPool}";
         
     }
+
     public void UpdateHealthText()
     {       
         if(playerStatus.playerHealth > 4)

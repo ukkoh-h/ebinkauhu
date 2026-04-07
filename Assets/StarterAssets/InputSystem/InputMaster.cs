@@ -399,17 +399,6 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3e87b508-0244-494e-97ff-c640d77885cb"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": ""MultiTap(tapTime=0.2,tapDelay=0.2,pressPoint=0.2)"",
-                    ""processors"": """",
-                    ""groups"": "";KeyboardMouse"",
-                    ""action"": ""Quickturn"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c68615eb-479e-4ffe-9a85-685e53011285"",
                     ""path"": ""<Keyboard>/alt"",
                     ""interactions"": """",
