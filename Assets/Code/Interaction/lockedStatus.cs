@@ -1,44 +1,76 @@
 using UnityEngine;
 
-public class lockedStatus : MonoBehaviour
+public class lockedStatus : MonoBehaviour, IDataPersistence
 {
+    [SerializeField] private string id;
     [SerializeField] door2 _door1;
     [SerializeField] door2 _door2;
     [SerializeField] lockedInteractable _lockedInt;
     [SerializeField] HUDManager _hud;
+    public lever lever;
     public bool locked1 = false;
     public bool locked2 = false;
     public bool locked3 = false;
     public bool lockedForPlayer = false;
+    public bool isLever = false;
     bool firstTime = false;
+    public bool unlocked = false;
     public string whileLocked;
     public string whileUnlocked;
     public string whenOpening;
+    public string leverLocked;
+    [ContextMenu("Generate guid for id")]
+    private void GenerateGuid()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
+    void Update()
+    {
+        if (locked1 || locked2 || locked3)
+        {
+            unlocked = false;
+        } else
+        {
+            unlocked = true;
+        }
+    }
 
     public void LockedStatus1()
     {
-        if (!locked1 && !locked2 && !locked3 && !firstTime)
+        if (!isLever)
         {
-            _hud.interactText = whileUnlocked;
-            _hud.UpdateInteractText();
-            _door1?.Open1();
-            _door2?.Open2();
-            _lockedInt?.Interact();
-            firstTime = true;
+            if (!locked1 && !locked2 && !locked3 && !firstTime)
+            {
+                _hud.interactText = whileUnlocked;
+                _hud.UpdateInteractText();
+                _door1?.Open1();
+                _door2?.Open2();
+                _lockedInt?.Interact();
+                firstTime = true;
+            }
+            else if (!locked1 && !locked2 && !locked3 && firstTime)
+            {
+                _hud.interactText = whenOpening;
+                _hud.UpdateInteractText();
+                _door1?.Open1();
+                _door2?.Open2();
+                _lockedInt?.Interact();
+            }
+            else
+            {
+                _hud.interactText = whileLocked;
+                _hud.UpdateInteractText();
+                //Debug.Log("IT'S LOCKED!");
+            }
+        } 
+        else if (isLever && !locked1)
+        {
+            lever.MonsterSmash();
         }
-        else if (!locked1 && !locked2 && !locked3 && firstTime)
+        else if (isLever && locked1)
         {
-            _hud.interactText = whenOpening;
+            _hud.interactText = leverLocked;
             _hud.UpdateInteractText();
-            _door1?.Open1();
-            _door2?.Open2();
-            _lockedInt?.Interact();
-        }
-        else
-        {
-            _hud.interactText = whileLocked;
-            _hud.UpdateInteractText();
-            //Debug.Log("IT'S LOCKED!");
         }
     }    
     public void LockedStatus2()
@@ -65,19 +97,13 @@ public class lockedStatus : MonoBehaviour
     }
     public void LockedStatus3()
     {
-        if (!locked1 && !locked2 && !locked3)
-        {
             _door1?.Open1();
             _door2?.Open2();
-        }
     }
     public void LockedStatus4()
     {
-        if (!locked1 && !locked2 && !locked3)
-        {
             _door1?.Open2();
             _door2?.Open1();
-        }
     }
     public void ChangeLocked()
     {
@@ -90,7 +116,7 @@ public class lockedStatus : MonoBehaviour
         } else if (locked3)
         {
             locked3 = false;
-            Debug.Log("IT'S UNLOCKED!");
+            //Debug.Log("IT'S UNLOCKED!");
         }
     }
     public void MonsterChangeLocked()
@@ -99,5 +125,23 @@ public class lockedStatus : MonoBehaviour
         {
             locked1 = !locked1;
         }
+    }
+    public void LoadData(GameData data)
+    {
+        data.lockedState.TryGetValue(id, out unlocked);
+        if (unlocked)
+        {
+            locked1 = false;
+            locked2 = false;
+            locked3 = false;
+        }
+    }
+    public void SaveData(ref GameData data)
+    {
+        if (data.lockedState.ContainsKey(id))
+        {
+            data.lockedState.Remove(id);
+        }
+        data.lockedState.Add(id, unlocked);
     }
 }
