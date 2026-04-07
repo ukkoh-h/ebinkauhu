@@ -19,6 +19,7 @@ public class lockedStatus : MonoBehaviour, IDataPersistence
     public string whileUnlocked;
     public string whenOpening;
     public string leverLocked;
+    [ContextMenu("Generate guid for id")]
     private void GenerateGuid()
     {
         id = System.Guid.NewGuid().ToString();

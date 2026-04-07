@@ -10,6 +10,7 @@ public class BookLockedStatus : MonoBehaviour, IDataPersistence
     public string whileLocked;
     public string whileUnlocked;
     public string whenOpening;
+    [ContextMenu("Generate guid for id")]
     private void GenerateGuid()
     {
         id = System.Guid.NewGuid().ToString();

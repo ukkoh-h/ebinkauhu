@@ -11,6 +11,7 @@ public class lockedInteractable : MonoBehaviour, IDataPersistence
     bool interactable = true;
     bool inactiveState = false;
     public bool finalScene;
+    [ContextMenu("Generate guid for id")]
     private void GenerateGuid()
     {
         id = System.Guid.NewGuid().ToString();
