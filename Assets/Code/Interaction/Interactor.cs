@@ -15,6 +15,8 @@ public class Interactor : MonoBehaviour
 
     private PlayerInput _playerInput;
 
+    [SerializeField] Animator vampyr;
+
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -32,8 +34,16 @@ public class Interactor : MonoBehaviour
                 if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
                 {
                     interactObj.Interact();
+                    vampyr.Play("Interact", 0, 0.25f);
+                    
+                    _playerInput.enabled = false;
+                    Invoke("Activate", 0.7f);
                 }
             }
         }
+    }
+    void Activate()
+    {
+        _playerInput.enabled = true;
     }
 }

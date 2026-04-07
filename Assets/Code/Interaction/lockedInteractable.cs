@@ -7,7 +7,9 @@ public class lockedInteractable : MonoBehaviour, IDataPersistence
     [SerializeField] lockedStatus lockStat;
     [SerializeField] BookLockedStatus bookLockStat;
     [SerializeField] GameObject monster;
+    [SerializeField] GameObject keyItem;
     public roomTrigger roomTrigger;
+    public InteractablePickup pickup;
     bool interactable = true;
     bool inactiveState = false;
     public bool finalScene;
@@ -32,7 +34,9 @@ public class lockedInteractable : MonoBehaviour, IDataPersistence
         {
             bookLockStat?.ChangeLocked();
             lockStat?.ChangeLocked();
+            pickup?.Pickup();
             if (monster != null) monster.SetActive(true);
+            if (keyItem != null) keyItem.SetActive(false);
             if (finalScene) roomTrigger.finalScene = true;
             interactable = false;
             gameObject.SetActive(false);
@@ -44,6 +48,7 @@ public class lockedInteractable : MonoBehaviour, IDataPersistence
         if (inactiveState)
         {
             gameObject.SetActive(false);
+            if (keyItem != null) keyItem.SetActive(false);
         }
     }
         public void SaveData(ref GameData data)
