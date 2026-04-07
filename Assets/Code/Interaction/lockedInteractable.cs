@@ -48,6 +48,7 @@ public class lockedInteractable : MonoBehaviour, IDataPersistence
         if (inactiveState)
         {
             gameObject.SetActive(false);
+            if (keyItem != null) keyItem.SetActive(false);
         }
     }
         public void SaveData(ref GameData data)
