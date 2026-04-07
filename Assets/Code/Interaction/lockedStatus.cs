@@ -6,39 +6,54 @@ public class lockedStatus : MonoBehaviour
     [SerializeField] door2 _door2;
     [SerializeField] lockedInteractable _lockedInt;
     [SerializeField] HUDManager _hud;
+    public lever lever;
     public bool locked1 = false;
     public bool locked2 = false;
     public bool locked3 = false;
     public bool lockedForPlayer = false;
+    public bool isLever = false;
     bool firstTime = false;
     public string whileLocked;
     public string whileUnlocked;
     public string whenOpening;
+    public string leverLocked;
 
     public void LockedStatus1()
     {
-        if (!locked1 && !locked2 && !locked3 && !firstTime)
+        if (!isLever)
         {
-            _hud.interactText = whileUnlocked;
-            _hud.UpdateInteractText();
-            _door1?.Open1();
-            _door2?.Open2();
-            _lockedInt?.Interact();
-            firstTime = true;
+            if (!locked1 && !locked2 && !locked3 && !firstTime)
+            {
+                _hud.interactText = whileUnlocked;
+                _hud.UpdateInteractText();
+                _door1?.Open1();
+                _door2?.Open2();
+                _lockedInt?.Interact();
+                firstTime = true;
+            }
+            else if (!locked1 && !locked2 && !locked3 && firstTime)
+            {
+                _hud.interactText = whenOpening;
+                _hud.UpdateInteractText();
+                _door1?.Open1();
+                _door2?.Open2();
+                _lockedInt?.Interact();
+            }
+            else
+            {
+                _hud.interactText = whileLocked;
+                _hud.UpdateInteractText();
+                //Debug.Log("IT'S LOCKED!");
+            }
+        } 
+        else if (isLever && !locked1)
+        {
+            
         }
-        else if (!locked1 && !locked2 && !locked3 && firstTime)
+        else if (isLever && locked1)
         {
-            _hud.interactText = whenOpening;
+            _hud.interactText = leverLocked;
             _hud.UpdateInteractText();
-            _door1?.Open1();
-            _door2?.Open2();
-            _lockedInt?.Interact();
-        }
-        else
-        {
-            _hud.interactText = whileLocked;
-            _hud.UpdateInteractText();
-            //Debug.Log("IT'S LOCKED!");
         }
     }    
     public void LockedStatus2()
@@ -90,7 +105,7 @@ public class lockedStatus : MonoBehaviour
         } else if (locked3)
         {
             locked3 = false;
-            Debug.Log("IT'S UNLOCKED!");
+            //Debug.Log("IT'S UNLOCKED!");
         }
     }
     public void MonsterChangeLocked()

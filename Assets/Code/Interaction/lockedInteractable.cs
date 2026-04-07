@@ -6,8 +6,9 @@ public class lockedInteractable : MonoBehaviour
     [SerializeField] lockedStatus lockStat;
     [SerializeField] BookLockedStatus bookLockStat;
     [SerializeField] GameObject monster;
-    //public GameObject gameObject;
+    public roomTrigger roomTrigger;
     bool interactable = true;
+    public bool finalScene;
     public void Interact()
     {
         if (interactable)
@@ -15,6 +16,7 @@ public class lockedInteractable : MonoBehaviour
             bookLockStat?.ChangeLocked();
             lockStat?.ChangeLocked();
             if (monster != null) monster.SetActive(true);
+            if (finalScene) roomTrigger.finalScene = true;
             interactable = !interactable;
             gameObject.SetActive(false);
         }
