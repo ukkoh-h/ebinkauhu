@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Weapon : MonoBehaviour
+public class Weapon : MonoBehaviour, IDataPersistence
 {
     private InputMaster controls;
     public PlayerStatus playerStatus;
@@ -31,6 +31,16 @@ public class Weapon : MonoBehaviour
     [Range(0, 1)] public float WeaponAudioVolume = 0.5f;
 
     private CharacterController _controller;
+
+    public void LoadData(GameData data)
+    {
+        this.ammoLeft = data.ammoLeft;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.ammoLeft = this.ammoLeft;
+    }
 
     private void Awake()
     {

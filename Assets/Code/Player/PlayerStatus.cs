@@ -135,10 +135,7 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
                 //OnHit();
                 //playerHealth -= 1;
             //}
-
         } */
-            
-
     }
 
     private void OnHit()

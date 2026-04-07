@@ -7,6 +7,8 @@ using UnityEngine;
 public class GameData
 {
     public int ammoPool;
+
+    public int ammoLeft;
     public int healthItemPool;
     public int playerHealth;
 
@@ -37,6 +39,7 @@ public class GameData
     public GameData()
     {
         this.ammoPool = 35;
+        this.ammoLeft = 5;
         this.healthItemPool = 5;
         this.playerHealth = 6;
         

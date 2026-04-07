@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 
@@ -8,9 +9,11 @@ public class HUDManager : MonoBehaviour
     public Weapon weapon;
     public PlayerStatus playerStatus;
 
+    [SerializeField] Animator blood_less;
+    [SerializeField] Animator blood_more;
+
     public TextMeshProUGUI text_ammo;
     public TextMeshProUGUI text_ammo_pool;
-    public TextMeshProUGUI text_health;
     public TextMeshProUGUI text_heal_pool;
 
     public TextMeshProUGUI text_interact;
@@ -21,6 +24,8 @@ public class HUDManager : MonoBehaviour
         UpdateAmmoText();
 
         UpdateInteractText();
+        blood_less.SetBool("Blood_1", false);
+        blood_more.SetBool("Blood_2", false);
         
     }
 
@@ -67,34 +72,83 @@ public class HUDManager : MonoBehaviour
     }
 
     public void UpdateHealthText()
-    {
+    {       
         if (playerStatus.playerHealth == 6)
         {
-            text_health.text = $"♥♥♥♥♥♥";
+            if (blood_less.GetBool("Blood_1") != false)
+            {
+                blood_less.SetBool("Blood_1", false);
+            }
+            if (blood_more.GetBool("Blood_2") != false)
+            {
+                blood_more.SetBool("Blood_2", false);
+            }
         } 
         else if (playerStatus.playerHealth == 5)
         {
-            text_health.text = $"♥♥♥♥♥";
+            if (blood_less.GetBool("Blood_1") != false)
+            {
+                blood_less.SetBool("Blood_1", false);
+            }
+            if (blood_more.GetBool("Blood_2") != false)
+            {
+                blood_more.SetBool("Blood_2", false);
+            }
         }
         else if (playerStatus.playerHealth == 4)
         {
-            text_health.text = $"♥♥♥♥";
+            if (blood_less.GetBool("Blood_1") != true)
+            {
+                blood_less.SetBool("Blood_1", true);
+            }
+            if (blood_more.GetBool("Blood_2") != false)
+            {
+                blood_more.SetBool("Blood_2", false);
+            }
         }
         else if (playerStatus.playerHealth== 3)
         {
-            text_health.text = $"♥♥♥";
+            if (blood_less.GetBool("Blood_1") != true)
+            {
+                blood_less.SetBool("Blood_1", true);
+            }
+            if (blood_more.GetBool("Blood_2") != false)
+            {
+                blood_more.SetBool("Blood_2", false);
+            }
         }
         else if (playerStatus.playerHealth == 2)
         {
-            text_health.text = $"♥♥";
+            if (blood_less.GetBool("Blood_1") != false)
+            {
+                blood_less.SetBool("Blood_1", false);
+            }
+            if (blood_more.GetBool("Blood_2") != true)
+            {
+                blood_more.SetBool("Blood_2", true);
+            }
         } 
         else if (playerStatus.playerHealth == 1)
         {
-            text_health.text = $"♥";
+            if (blood_less.GetBool("Blood_1") != false)
+            {
+                blood_less.SetBool("Blood_1", false);
+            }
+            if (blood_more.GetBool("Blood_2") != true)
+            {
+                blood_more.SetBool("Blood_2", true);
+            }
         } 
         else
         {
-            text_health.text = $"";
+            if (blood_less.GetBool("Blood_1") != false)
+            {
+                blood_less.SetBool("Blood_1", false);
+            }
+            if (blood_more.GetBool("Blood_2") != false)
+            {
+                blood_more.SetBool("Blood_2", false);
+            }
         }
         text_heal_pool.text = $"Health item pool: {playerStatus.healthItemPool}";
     }
