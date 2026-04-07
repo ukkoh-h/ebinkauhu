@@ -64,6 +64,7 @@ public class monster : MonoBehaviour
         //animator = GetComponent<Animator>();
         player = GameObject.Find("Player").transform;
         navAgent = GetComponent<NavMeshAgent>();
+        alreadyAttacked = false;
         
     }
 
@@ -71,6 +72,7 @@ public class monster : MonoBehaviour
     {
         //_hasAnimator = TryGetComponent(out _animator);
         //AssignAnimationIDs();
+        
     }
 
     private void Update()
