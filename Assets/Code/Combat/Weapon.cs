@@ -31,6 +31,7 @@ public class Weapon : MonoBehaviour, IDataPersistence
     [Range(0, 1)] public float WeaponAudioVolume = 0.5f;
 
     private CharacterController _controller;
+    [SerializeField] Animator vampyr;
 
     public void LoadData(GameData data)
     {
@@ -83,7 +84,7 @@ public class Weapon : MonoBehaviour, IDataPersistence
         bullet.GetComponent<Bullet>().damage = bulletDamage;
 
         AudioSource.PlayClipAtPoint(WeaponAudioClips[1], transform.TransformPoint(_controller.center), WeaponAudioVolume);
-
+        vampyr.Play("Shoot", 0, 0.25f);
         ammoLeft--;
 
         if(ammoLeft >= 0)

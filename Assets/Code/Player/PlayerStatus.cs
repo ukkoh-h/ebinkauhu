@@ -6,7 +6,7 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
     public float respawnTimer = 1;
 
     [SerializeField] GameObject deathMenu;
-    [SerializeField] Animator death_menu;
+    [SerializeField] Animator fade_menu;
 
     public bool hasWeapon_1;
     public bool hasWeapon_2;
@@ -81,7 +81,7 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
         _playerInput = GetComponent<PlayerInput>();
         heal = _playerInput.actions.FindAction("Heal");
         _playerInput.enabled = true;
-        death_menu.SetBool("Start", false);
+        fade_menu.SetBool("Start", false);
     }
     
 
@@ -158,10 +158,14 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
                 var index = Random.Range(0, PlayerAudioClips.Length - 2);
                 AudioSource.PlayClipAtPoint(PlayerAudioClips[index], transform.TransformPoint(this.transform.position), PlayerAudioVolume);
                 
-                vampyr.Play("Damaged", 0, 0.25f);
-
-                _playerInput.enabled = false;
-                Invoke("Activate", 0.7f);
+                
+                if(vampyr.GetBool("IsAiming") == false)
+                {
+                    vampyr.Play("Damaged", 0, 0.25f);
+                    _playerInput.enabled = false;
+                    Invoke("Activate", 0.7f);
+                }
+                
             }
     }
     void Activate()
@@ -177,9 +181,9 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
                 vampyr.Play("Death", 0, 0.25f);
 
                 _playerInput.enabled = false;
-                if (death_menu.GetBool("Start") != true)
+                if (fade_menu.GetBool("Start") != true)
                 {
-                    death_menu.SetBool("Start", true);
+                    fade_menu.SetBool("Start", true);
                 }
                 Invoke("Death", 4f);
             }

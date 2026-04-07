@@ -139,6 +139,7 @@ namespace StarterAssets
             targetRotation = transform.rotation;
             qt = _playerInput.actions.FindAction("Quickturn");
             aim = _playerInput.actions.FindAction("Aim");
+            _animator.SetBool("IsAiming", false);
         
         }
 
@@ -196,16 +197,20 @@ namespace StarterAssets
                 targetTurnSpeed = turnReverseSpeed;
             }
 
+            /* if(aim.triggered)
+            {
+                
+            } */
             if(_input.aim)
-                {
-                    _weapon.SetActive(true);
-
-                    weapon.enabled = true;
-                    targetSpeed = MoveAimSpeed;
-                    targetTurnSpeed = turnAimSpeed;
+            {   
+                targetSpeed = MoveAimSpeed;
+                targetTurnSpeed = turnAimSpeed;
+                _animator.SetBool("IsAiming", true);
+                Invoke("Activate", 0.8f);
             }
             else
             {
+                _animator.SetBool("IsAiming", false);
                 _weapon.SetActive(false);
                 weapon.enabled = false;
             }
@@ -339,6 +344,12 @@ namespace StarterAssets
                     
                     //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5f);
                 }
+        }
+
+        void Activate()
+        {
+            _weapon.SetActive(true);
+            weapon.enabled = true;
         }
 
         private void JumpAndGravity()
