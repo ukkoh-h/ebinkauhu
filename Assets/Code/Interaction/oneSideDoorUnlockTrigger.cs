@@ -31,23 +31,12 @@ public class oneSideDoorUnlockTrigger : MonoBehaviour, IInteractable
             {
                 if (!doorDirection)
                 {
-                    _lockedStatus.MonsterChangeLocked();
                     _lockedStatus.LockedStatus2();
 
                 } else
                 {
-                    _lockedStatus.MonsterChangeLocked();
                     _lockedStatus.LockedStatus1();
                 }
-            } 
-
-    }
-        private void OnTriggerExit(Collider other)
-    {
-
-            if(other.CompareTag("monster"))
-            {
-                _lockedStatus.MonsterChangeLocked();
             } 
 
     }

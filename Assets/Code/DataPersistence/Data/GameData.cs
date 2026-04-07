@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 [System.Serializable]
@@ -19,6 +20,8 @@ public class GameData
     public SerializableDictionary<string, bool> ammoCollected;
     public SerializableDictionary<string, bool> potionsCollected;
     public SerializableDictionary<string, bool> keysCollected;
+    public SerializableDictionary<string, bool> lockedState;
+    public SerializableDictionary<string, bool> itemActiveState;
 
     public bool hasWeapon_2;
 
@@ -50,6 +53,8 @@ public class GameData
         ammoCollected = new SerializableDictionary<string, bool>();
         potionsCollected = new SerializableDictionary<string, bool>();
         keysCollected = new SerializableDictionary<string, bool>();
+        lockedState = new SerializableDictionary<string, bool>();
+        itemActiveState = new SerializableDictionary<string, bool>();
 
         this.hasWeapon_2 = false;
 

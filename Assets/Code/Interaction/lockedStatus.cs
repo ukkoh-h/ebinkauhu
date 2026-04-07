@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class lockedStatus : MonoBehaviour
+public class lockedStatus : MonoBehaviour, IDataPersistence
 {
+    [SerializeField] private string id;
     [SerializeField] door2 _door1;
     [SerializeField] door2 _door2;
     [SerializeField] lockedInteractable _lockedInt;
@@ -13,10 +14,25 @@ public class lockedStatus : MonoBehaviour
     public bool lockedForPlayer = false;
     public bool isLever = false;
     bool firstTime = false;
+    public bool locked;
     public string whileLocked;
     public string whileUnlocked;
     public string whenOpening;
     public string leverLocked;
+    private void GenerateGuid()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
+    void Update()
+    {
+        if (locked1 || locked2 || locked3)
+        {
+            locked = true;
+        } else
+        {
+            locked = false;
+        }
+    }
 
     public void LockedStatus1()
     {
@@ -48,7 +64,7 @@ public class lockedStatus : MonoBehaviour
         } 
         else if (isLever && !locked1)
         {
-            
+            lever.MonsterSmash();
         }
         else if (isLever && locked1)
         {
@@ -80,19 +96,13 @@ public class lockedStatus : MonoBehaviour
     }
     public void LockedStatus3()
     {
-        if (!locked1 && !locked2 && !locked3)
-        {
             _door1?.Open1();
             _door2?.Open2();
-        }
     }
     public void LockedStatus4()
     {
-        if (!locked1 && !locked2 && !locked3)
-        {
             _door1?.Open2();
             _door2?.Open1();
-        }
     }
     public void ChangeLocked()
     {
@@ -114,5 +124,23 @@ public class lockedStatus : MonoBehaviour
         {
             locked1 = !locked1;
         }
+    }
+    public void LoadData(GameData data)
+    {
+        data.lockedState.TryGetValue(id, out locked);
+        if (!locked)
+        {
+            locked1 = false;
+            locked2 = false;
+            locked3 = false;
+        }
+    }
+    public void SaveData(ref GameData data)
+    {
+        if (data.lockedState.ContainsKey(id))
+        {
+            data.lockedState.Remove(id);
+        }
+        data.lockedState.Add(id, locked);
     }
 }

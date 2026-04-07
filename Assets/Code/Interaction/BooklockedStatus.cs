@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class BookLockedStatus : MonoBehaviour
+public class BookLockedStatus : MonoBehaviour, IDataPersistence
 {
+    [SerializeField] private string id;
     [SerializeField] doorBookcase _door1;
     [SerializeField] HUDManager _hud;
     public bool locked = true;
@@ -9,6 +10,10 @@ public class BookLockedStatus : MonoBehaviour
     public string whileLocked;
     public string whileUnlocked;
     public string whenOpening;
+    private void GenerateGuid()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
     public void LockedStatus1()
     {
         if (!locked)
@@ -33,6 +38,22 @@ public class BookLockedStatus : MonoBehaviour
         public void ChangeLocked()
     {
         locked = !locked;
+    }
+    public void LoadData(GameData data)
+    {
+        data.lockedState.TryGetValue(id, out locked);
+        if (!locked)
+        {
+            locked = false;
+        }
+    }
+    public void SaveData(ref GameData data)
+    {
+        if (data.lockedState.ContainsKey(id))
+        {
+            data.lockedState.Remove(id);
+        }
+        data.lockedState.Add(id, locked);
     }
 
 }
