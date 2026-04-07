@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class oneSideDoorUnlockTrigger : MonoBehaviour
+public class oneSideDoorUnlockTrigger : MonoBehaviour, IInteractable
 {
     [SerializeField] lockedStatus _lockedStatus;
 
@@ -10,14 +10,14 @@ public class oneSideDoorUnlockTrigger : MonoBehaviour
     public void Interact()
     {
 
-            if (!doorDirection)
+            if (doorDirection)
             {
-                _lockedStatus.LockedStatus2();
                 if (firstTime) 
                 {
                     _lockedStatus.ChangeLocked();
                     firstTime=!firstTime;
                 }
+                _lockedStatus.LockedStatus2();
             } else
             {
                 _lockedStatus.LockedStatus1();

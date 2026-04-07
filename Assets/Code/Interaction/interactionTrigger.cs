@@ -32,10 +32,10 @@ public class interactionTrigger : MonoBehaviour, IInteractable
             {
                 if (!doorDirection)
                 {
-                    _lockedStatus.LockedStatus2();
+                    _lockedStatus.LockedStatus4();
                 } else
                 {
-                    _lockedStatus.LockedStatus1();
+                    _lockedStatus.LockedStatus3();
                 }
             } 
         }

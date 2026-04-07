@@ -10,7 +10,8 @@ public class door2 : MonoBehaviour
 
     bool open = false;
     bool direction = false;
-    float timedOpen = 0;
+    //float timedOpen = 0;
+    //bool timedOpen = false;
     //bool enter = false;
 
     float defaultRotationAngle;
@@ -39,23 +40,18 @@ public class door2 : MonoBehaviour
         }
         if (open == true)
         {
-            //artCoroutine(DoorTimerCorutine());
-            ++timedOpen;
-            if (timedOpen > 320)
-            {
-                open = !open;
-                direction = false;
-                currentRotationAngle = transform.localEulerAngles.y;
-                openTime = 0;
-                timedOpen = 0;
-            }
+            StartCoroutine(DoorTimerCorutine());
         }
     }
-    /*vate IEnumerator DoorTimerCorutine()
+    private IEnumerator DoorTimerCorutine()
     {
-        yield return new WaitForSeconds(2f);
-        timedOpen = true;
-    }*/
+        yield return new WaitForSeconds(3f);
+        open = false;
+        direction = false;
+        currentRotationAngle = transform.localEulerAngles.y;
+        openTime = 0;
+        //timedOpen = true;
+    }
     public void Open1()
     {
         if (!open)

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+//using System.Threading.Tasks.Dataflow;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -41,6 +42,7 @@ public class monster : MonoBehaviour
     public float hearingRange;
     /// <summary>
     public float attackRange;
+    public bool cantSee = false;
     /// </summary>
     /*public int damage;
     public Animator animator;
@@ -52,6 +54,7 @@ public class monster : MonoBehaviour
     private Vector3 targetPosition;
     private bool alreadyAttacked;
     private bool noise = false;
+    private bool playerSeen = false;
     private bool playerHeared = false;
     private bool navigating = false;
     /*private bool takeDamage;*/
@@ -61,6 +64,7 @@ public class monster : MonoBehaviour
         //animator = GetComponent<Animator>();
         player = GameObject.Find("Player").transform;
         navAgent = GetComponent<NavMeshAgent>();
+        alreadyAttacked = false;
         
     }
 
@@ -68,6 +72,7 @@ public class monster : MonoBehaviour
     {
         //_hasAnimator = TryGetComponent(out _animator);
         //AssignAnimationIDs();
+        
     }
 
     private void Update()
@@ -79,31 +84,39 @@ public class monster : MonoBehaviour
         bool playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
-        if(disable == false) {
+        if(!disable) {
             
             //Debug.Log(walkPointSet);
 
             if (playerInHearingRange && noise) playerHeared = true;
+            if (playerInSightRange && !cantSee)
+            {
+                playerSeen = true;
+            }
+            else
+            {
+                playerSeen = false;
+            }
             /*if (playerHeared && playerInSightRange) {playerHeared = false;}
             if (playerInSightRange) {Debug.Log("I SEE YOU!");}*/
             
-            if (!playerInSightRange && !playerInAttackRange && !playerHeared)
+            if (!playerSeen && !playerInAttackRange && !playerHeared)
             {
                 Patroling();
                 navAgent.speed = patrolSpeed;
 
             }
-            else if (!playerInSightRange && !playerInAttackRange && playerHeared)
+            else if (!playerSeen && !playerInAttackRange && playerHeared)
             {
                 NavLastHeard();
                 navAgent.speed = chaseSpeed;
             }
-            else  if (playerInSightRange && !playerInAttackRange)
+            else  if (playerSeen && !playerInAttackRange)
             {
                 ChasePlayer();
                 navAgent.speed = chaseSpeed;
             }
-            else if (playerInAttackRange && playerInSightRange)
+            else if (playerInAttackRange && playerSeen)
             {
                 AttackPlayer();
             }
@@ -122,7 +135,7 @@ public class monster : MonoBehaviour
 
     private void MonsterHealth() 
     {
-        if(health == (maxHealth / 3) * 2 )
+        if(health == maxHealth / 3 * 2 )
         {
             if(hitOnce == false) 
             {
@@ -140,7 +153,7 @@ public class monster : MonoBehaviour
             }
         }
 
-        if(health <= 0)
+        if(health <= 0 && disable == false)
         {
             if (MonsterAudioClips.Length > 0) OnHit();
 
@@ -266,6 +279,14 @@ public class monster : MonoBehaviour
     {
         noise = true;
         navigating = false;
+    }
+    public void RespawnMonster()
+    {
+        transform.position = new Vector3(-5, 0, -13);
+    }
+        public void SpawnMonsterBehindWall()
+    {
+        transform.position = new Vector3(-2, 3, -7);
     }
 
     /*public void TakeDamage(float damage)

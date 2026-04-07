@@ -7,6 +7,10 @@ using UnityEngine;
 public class GameData
 {
     public int ammoPool;
+
+    public Vector3 spawnPoint = new Vector3(-3, 0, 7);
+
+    public int ammoLeft;
     public int healthItemPool;
     public int playerHealth;
 
@@ -37,11 +41,12 @@ public class GameData
     public GameData()
     {
         this.ammoPool = 35;
+        this.ammoLeft = 5;
         this.healthItemPool = 5;
         this.playerHealth = 6;
         
         //Laitetaan halutut aloitus koordinaatit tilalle sit
-        playerPosition = Vector3.zero;
+        playerPosition = spawnPoint;
         ammoCollected = new SerializableDictionary<string, bool>();
         potionsCollected = new SerializableDictionary<string, bool>();
         keysCollected = new SerializableDictionary<string, bool>();
