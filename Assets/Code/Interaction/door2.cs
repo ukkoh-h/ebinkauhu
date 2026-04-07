@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class door2 : MonoBehaviour
 {
+    [SerializeField] GameObject particle1;
+    [SerializeField] GameObject particle2;
     //public AnimationCurve openSpeedCurve = new(new Keyframe[] { new(0, 1, 0, 0), new(0.8f, 1, 0, 0), new(1, 0, 0, 0) }); //Contols the open speed at a specific time (ex. the door opens fast at the start then slows down at the end)
     //public AnimationCurve openSpeedCurve = new(new Keyframe[] { new(0, 0, 1, 0), new(0, 0, 1, 0.8f), new(0, 0, 0, 1) }); //Contols the open speed at a specific time (ex. the door opens fast at the start then slows down at the end)
     public float openSpeedMultiplier = 2.0f; //Increasing this value will make the door open faster
@@ -50,6 +52,8 @@ public class door2 : MonoBehaviour
         direction = false;
         currentRotationAngle = transform.localEulerAngles.y;
         openTime = 0;
+        if (particle1!=null)particle1.SetActive(true);
+        if (particle2!=null)particle2.SetActive(true);
         //timedOpen = true;
     }
     public void Open1()
@@ -60,6 +64,8 @@ public class door2 : MonoBehaviour
             direction = false;
             currentRotationAngle = transform.localEulerAngles.y;
             openTime = 0;
+            if (particle1!=null)particle1.SetActive(false);
+            if (particle2!=null)particle2.SetActive(false);
         }
     }
     public void Open2()
@@ -70,6 +76,8 @@ public class door2 : MonoBehaviour
             direction = true;
             currentRotationAngle = transform.localEulerAngles.y;
             openTime = 0;
+            if (particle1!=null)particle1.SetActive(false);
+            if (particle2!=null)particle2.SetActive(false);
         }
     }
 }

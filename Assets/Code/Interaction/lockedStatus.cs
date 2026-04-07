@@ -121,10 +121,7 @@ public class lockedStatus : MonoBehaviour, IDataPersistence
     }
     public void MonsterChangeLocked()
     {
-        if (lockedForPlayer)
-        {
             locked1 = !locked1;
-        }
     }
     public void LoadData(GameData data)
     {

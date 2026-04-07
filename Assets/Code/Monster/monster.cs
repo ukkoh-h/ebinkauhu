@@ -282,7 +282,7 @@ public class monster : MonoBehaviour
     }
     public void RespawnMonster()
     {
-        transform.position = new Vector3(-5, 0, -13);
+        transform.position = new Vector3(6, 0, -13);
     }
     public void SpawnMonsterBehindWall()
     {
@@ -290,7 +290,7 @@ public class monster : MonoBehaviour
     }
     public void PlaceForFinalFight()
     {
-        transform.position = new Vector3(-2, 0, 0);
+        transform.position = new Vector3(-1, 0, -3);
     }
 
     /*public void TakeDamage(float damage)

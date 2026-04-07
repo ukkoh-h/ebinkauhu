@@ -12,7 +12,6 @@ public class roomTrigger : MonoBehaviour
     public lockedStatus door1;
     public lockedStatus door2;
     public lockedStatus door3;
-    public lockedStatus door4;
     public bool visibility;
     public bool desapawnMonster;
     public bool respawnMonster;
@@ -57,7 +56,6 @@ public class roomTrigger : MonoBehaviour
                 door1.locked1 = true;
                 door2.locked1 = true;
                 door3.locked1 = true;
-                door4.locked1 = true;
             }
         }
     }

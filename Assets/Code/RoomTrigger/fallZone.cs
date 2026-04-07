@@ -4,6 +4,7 @@ public class fallZone : MonoBehaviour
 {
     //private bool monsterInside = false;
     public lockedStatus lockStat;
+    public Transform monster;
     public lever lever;
     private void OnTriggerEnter(Collider other)
     {

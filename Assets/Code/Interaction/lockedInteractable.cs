@@ -10,9 +10,11 @@ public class lockedInteractable : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject keyItem;
     public roomTrigger roomTrigger;
     public InteractablePickup pickup;
+    public lever lever;
     bool interactable = true;
     bool inactiveState = false;
     public bool finalScene;
+    public bool droper;
     [ContextMenu("Generate guid for id")]
     private void GenerateGuid()
     {
@@ -37,7 +39,12 @@ public class lockedInteractable : MonoBehaviour, IDataPersistence
             pickup?.Pickup();
             if (monster != null) monster.SetActive(true);
             if (keyItem != null) keyItem.SetActive(false);
-            if (finalScene) roomTrigger.finalScene = true;
+            if (finalScene)
+            {
+                roomTrigger.finalScene = true;
+                roomTrigger.respawnMonster = false;
+            }
+            if (droper) lever.MonsterSmash();
             interactable = false;
             gameObject.SetActive(false);
         }

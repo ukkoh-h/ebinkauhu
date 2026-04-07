@@ -25,7 +25,7 @@ public class lever : MonoBehaviour
 
         private IEnumerator CamFocusCorutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         chandelier2.SetActive(false);
         activeCam.Priority = 0;
     }

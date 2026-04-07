@@ -4986,8 +4986,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4745447682224025172}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.247, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 4.053, y: 0, z: 1.033}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4995,7 +4995,7 @@ Transform:
   - {fileID: 5944433459562848470}
   - {fileID: 8603749261097513705}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &9053049862260653644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5012,9 +5012,12 @@ MonoBehaviour:
   lockStat: {fileID: 0}
   bookLockStat: {fileID: 0}
   monster: {fileID: 0}
+  keyItem: {fileID: 0}
   roomTrigger: {fileID: 0}
   pickup: {fileID: 1432262929529450386}
+  lever: {fileID: 0}
   finalScene: 0
+  droper: 0
 --- !u!114 &4939405774752223328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5267,7 +5270,7 @@ MonoBehaviour:
   ammoPickupAmount: 5
   healthPickupAmount: 3
   healthPick: 1
-  ammoPick: 0
+  ammoPick: 1
 --- !u!1 &8775980210016896472
 GameObject:
   m_ObjectHideFlags: 0
