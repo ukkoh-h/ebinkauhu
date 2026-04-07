@@ -10,6 +10,10 @@ public class SwingHit : MonoBehaviour
             if(other.GetComponent<PlayerStatus>().playerHealth == 1)
             {
                 other.GetComponent<PlayerStatus>().OnDeath();
+            }
+            else if(other.GetComponent<PlayerStatus>().playerHealth == 0)
+            {
+                return;
             } 
             else
             {
