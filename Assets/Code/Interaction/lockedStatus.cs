@@ -14,7 +14,7 @@ public class lockedStatus : MonoBehaviour, IDataPersistence
     public bool lockedForPlayer = false;
     public bool isLever = false;
     bool firstTime = false;
-    public bool locked;
+    public bool unlocked = false;
     public string whileLocked;
     public string whileUnlocked;
     public string whenOpening;
@@ -27,10 +27,10 @@ public class lockedStatus : MonoBehaviour, IDataPersistence
     {
         if (locked1 || locked2 || locked3)
         {
-            locked = true;
+            unlocked = false;
         } else
         {
-            locked = false;
+            unlocked = true;
         }
     }
 
@@ -127,8 +127,8 @@ public class lockedStatus : MonoBehaviour, IDataPersistence
     }
     public void LoadData(GameData data)
     {
-        data.lockedState.TryGetValue(id, out locked);
-        if (!locked)
+        data.lockedState.TryGetValue(id, out unlocked);
+        if (unlocked)
         {
             locked1 = false;
             locked2 = false;
@@ -141,6 +141,6 @@ public class lockedStatus : MonoBehaviour, IDataPersistence
         {
             data.lockedState.Remove(id);
         }
-        data.lockedState.Add(id, locked);
+        data.lockedState.Add(id, unlocked);
     }
 }

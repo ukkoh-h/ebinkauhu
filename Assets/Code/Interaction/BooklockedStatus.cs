@@ -5,7 +5,7 @@ public class BookLockedStatus : MonoBehaviour, IDataPersistence
     [SerializeField] private string id;
     [SerializeField] doorBookcase _door1;
     [SerializeField] HUDManager _hud;
-    public bool locked = true;
+    public bool unlocked = false;
     public bool opened = false;
     public string whileLocked;
     public string whileUnlocked;
@@ -16,7 +16,7 @@ public class BookLockedStatus : MonoBehaviour, IDataPersistence
     }
     public void LockedStatus1()
     {
-        if (!locked)
+        if (unlocked)
         {
             if (!opened)
             {
@@ -37,14 +37,14 @@ public class BookLockedStatus : MonoBehaviour, IDataPersistence
     }    
         public void ChangeLocked()
     {
-        locked = !locked;
+        unlocked = !unlocked;
     }
     public void LoadData(GameData data)
     {
-        data.lockedState.TryGetValue(id, out locked);
-        if (!locked)
+        data.lockedState.TryGetValue(id, out unlocked);
+        if (unlocked)
         {
-            locked = false;
+            unlocked = true;
         }
     }
     public void SaveData(ref GameData data)
@@ -53,7 +53,7 @@ public class BookLockedStatus : MonoBehaviour, IDataPersistence
         {
             data.lockedState.Remove(id);
         }
-        data.lockedState.Add(id, locked);
+        data.lockedState.Add(id, unlocked);
     }
 
 }

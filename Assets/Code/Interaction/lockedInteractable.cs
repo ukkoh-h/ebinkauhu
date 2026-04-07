@@ -9,7 +9,7 @@ public class lockedInteractable : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject monster;
     public roomTrigger roomTrigger;
     bool interactable = true;
-    bool activeState = true;
+    bool inactiveState = false;
     public bool finalScene;
     private void GenerateGuid()
     {
@@ -17,12 +17,12 @@ public class lockedInteractable : MonoBehaviour, IDataPersistence
     }
         void Update()
     {
-        if (interactable || lockStat.locked || bookLockStat.locked)
+        if (interactable || !lockStat.unlocked || !bookLockStat.unlocked)
         {
-            activeState = true;
+            inactiveState = false;
         } else
         {
-            activeState = false;
+            inactiveState = true;
         }
     }
     public void Interact()
@@ -39,8 +39,8 @@ public class lockedInteractable : MonoBehaviour, IDataPersistence
     }
         public void LoadData(GameData data)
     {
-        data.itemActiveState.TryGetValue(id, out activeState);
-        if (!activeState)
+        data.itemActiveState.TryGetValue(id, out inactiveState);
+        if (inactiveState)
         {
             gameObject.SetActive(false);
         }
@@ -51,6 +51,6 @@ public class lockedInteractable : MonoBehaviour, IDataPersistence
         {
             data.itemActiveState.Remove(id);
         }
-        data.itemActiveState.Add(id, activeState);
+        data.itemActiveState.Add(id, inactiveState);
     }
 }
