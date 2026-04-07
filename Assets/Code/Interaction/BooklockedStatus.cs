@@ -3,6 +3,7 @@ using UnityEngine;
 public class BookLockedStatus : MonoBehaviour
 {
     [SerializeField] doorBookcase _door1;
+    [SerializeField] HUDManager _hud;
     public bool locked = true;
     public bool opened = false;
     public string whileLocked;
@@ -14,15 +15,19 @@ public class BookLockedStatus : MonoBehaviour
         {
             if (!opened)
             {
-                Debug.Log(whenOpening);
+                _hud.interactText = whenOpening;
+                _hud.UpdateInteractText();
                 _door1.Open1();
+                opened = true;
             } else
             {
-                Debug.Log(whileUnlocked);
+                _hud.interactText = whileUnlocked;
+                _hud.UpdateInteractText();
             }
         } else
         {
-            Debug.Log(whileLocked);
+            _hud.interactText = whileLocked;
+            _hud.UpdateInteractText();
         }
     }    
         public void ChangeLocked()

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -17,6 +17,7 @@ public class HUDManager : MonoBehaviour
     public TextMeshProUGUI text_heal_pool;
 
     public TextMeshProUGUI text_interact;
+    public string interactText;
 
     void Start()
     {
@@ -34,11 +35,13 @@ public class HUDManager : MonoBehaviour
     {
         UpdateHealthText();
         UpdateAmmoText();
-        
     }
 
     public void UpdateInteractText()
     {
+        text_interact.text = $"{interactText}";
+        StartCoroutine(TextTimerCorutine());
+        //text_interact.text = $"";
         /* if (!raycasthit) text_interact.text = $"";
 
         if (raycasthit)
@@ -180,5 +183,11 @@ public class HUDManager : MonoBehaviour
             text_ammo.text = $"";
         }
         text_ammo_pool.text = $"Ammo pool: {playerStatus.ammoPool}";
+    }
+
+    private IEnumerator TextTimerCorutine()
+    {
+        yield return new WaitForSeconds(2f);
+        text_interact.text = $"";
     }
 }

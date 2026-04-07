@@ -1,3 +1,4 @@
+//using System.Threading.Tasks.Dataflow;
 using UnityEngine;
 
 public class lockedInteractable : MonoBehaviour
@@ -5,6 +6,7 @@ public class lockedInteractable : MonoBehaviour
     [SerializeField] lockedStatus lockStat;
     [SerializeField] BookLockedStatus bookLockStat;
     [SerializeField] GameObject monster;
+    //public GameObject gameObject;
     bool interactable = true;
     public void Interact()
     {
@@ -12,9 +14,9 @@ public class lockedInteractable : MonoBehaviour
         {
             bookLockStat?.ChangeLocked();
             lockStat?.ChangeLocked();
-            monster?.SetActive(true);
+            if (monster != null) monster.SetActive(true);
             interactable = !interactable;
-            Debug.Log("something unlocked");
+            gameObject.SetActive(false);
         }
     }
 }
