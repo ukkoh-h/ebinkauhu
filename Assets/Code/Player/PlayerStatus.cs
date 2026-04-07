@@ -6,6 +6,7 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
     public float respawnTimer = 1;
 
     [SerializeField] GameObject deathMenu;
+    [SerializeField] Animator death_menu;
 
     public bool hasWeapon_1;
     public bool hasWeapon_2;
@@ -36,6 +37,8 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
 
     private PlayerInput _playerInput;
     InputAction heal;
+
+    [SerializeField] Animator vampyr;
 
     //public float cooldown = 8f;
 
@@ -77,6 +80,8 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
     {
         _playerInput = GetComponent<PlayerInput>();
         heal = _playerInput.actions.FindAction("Heal");
+        _playerInput.enabled = true;
+        death_menu.SetBool("Start", false);
     }
     
 
@@ -86,7 +91,7 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
         {
             AddHealth();
         } 
-        if(playerHealth <= 0)
+        /* if(playerHealth <= 0)
         {
             //this.transform.position = respawnPoint;
             //Invoke("Respawn", respawnTimer);
@@ -97,7 +102,7 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
 
             
             //playerHealth = playerMaxHealth;
-        }
+        } */
 
         /* if(playerHealth == (playerMaxHealth / 3) * 2 )
         {
@@ -152,7 +157,16 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
             {
                 var index = Random.Range(0, PlayerAudioClips.Length - 2);
                 AudioSource.PlayClipAtPoint(PlayerAudioClips[index], transform.TransformPoint(this.transform.position), PlayerAudioVolume);
+                
+                vampyr.Play("Damaged", 0, 0.25f);
+
+                _playerInput.enabled = false;
+                Invoke("Activate", 0.7f);
             }
+    }
+    void Activate()
+    {
+        _playerInput.enabled = true;
     }
     public void OnDeath()
     {
@@ -160,7 +174,23 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
             {
                 var index = Random.Range(9, PlayerAudioClips.Length);
                 AudioSource.PlayClipAtPoint(PlayerAudioClips[index], transform.TransformPoint(this.transform.position), PlayerAudioVolume);
+                vampyr.Play("Death", 0, 0.25f);
+
+                _playerInput.enabled = false;
+                if (death_menu.GetBool("Start") != true)
+                {
+                    death_menu.SetBool("Start", true);
+                }
+                Invoke("Death", 4f);
             }
+    }
+    void Death()
+    {
+        _playerInput.enabled = true;
+        deathMenu.SetActive(true);
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        AudioListener.pause = true;
     }
 
     void ActivatePlayer()
