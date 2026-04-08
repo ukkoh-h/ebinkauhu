@@ -5,12 +5,14 @@ public class door2 : MonoBehaviour
 {
     [SerializeField] GameObject particle1;
     [SerializeField] GameObject particle2;
+    public InteractionAudio interactionAudio;
     //public AnimationCurve openSpeedCurve = new(new Keyframe[] { new(0, 1, 0, 0), new(0.8f, 1, 0, 0), new(1, 0, 0, 0) }); //Contols the open speed at a specific time (ex. the door opens fast at the start then slows down at the end)
     //public AnimationCurve openSpeedCurve = new(new Keyframe[] { new(0, 0, 1, 0), new(0, 0, 1, 0.8f), new(0, 0, 0, 1) }); //Contols the open speed at a specific time (ex. the door opens fast at the start then slows down at the end)
     public float openSpeedMultiplier = 2.0f; //Increasing this value will make the door open faster
     public float doorOpenAngle = 90.0f; //Global door open speed that will multiply the openSpeedCurve
 
     bool open = false;
+    bool closing = false;
     bool direction = false;
     //float timedOpen = 0;
     //bool timedOpen = false;
@@ -40,8 +42,9 @@ public class door2 : MonoBehaviour
         {
             transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, defaultRotationAngle + (open ? doorOpenAngle : 0), openTime), transform.localEulerAngles.z);
         }
-        if (open == true)
+        if (open && !closing)
         {
+            closing = true;
             StartCoroutine(DoorTimerCorutine());
         }
     }
@@ -49,9 +52,11 @@ public class door2 : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         open = false;
+        closing = false;
         direction = false;
         currentRotationAngle = transform.localEulerAngles.y;
         openTime = 0;
+        if (interactionAudio!=null)AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[2], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume);
         if (particle1!=null)particle1.SetActive(true);
         if (particle2!=null)particle2.SetActive(true);
         //timedOpen = true;
@@ -64,6 +69,7 @@ public class door2 : MonoBehaviour
             direction = false;
             currentRotationAngle = transform.localEulerAngles.y;
             openTime = 0;
+            if (interactionAudio!=null)AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[1], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume);
             if (particle1!=null)particle1.SetActive(false);
             if (particle2!=null)particle2.SetActive(false);
         }
@@ -76,6 +82,7 @@ public class door2 : MonoBehaviour
             direction = true;
             currentRotationAngle = transform.localEulerAngles.y;
             openTime = 0;
+            if (interactionAudio!=null)AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[1], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume);
             if (particle1!=null)particle1.SetActive(false);
             if (particle2!=null)particle2.SetActive(false);
         }

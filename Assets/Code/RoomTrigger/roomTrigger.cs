@@ -32,6 +32,7 @@ public class roomTrigger : MonoBehaviour
             {
                 monster2.SpawnMonsterBehindWall();
                 monster1.SetActive(true);
+                interactionAudio.CrashSoundTimerCorutine();
                 piece.Despawn();
                 spawnBehindWall = false;
             }

@@ -10,6 +10,7 @@ public class lever : MonoBehaviour
     [SerializeField] GameObject monster1;
     [SerializeField] GameObject monster2;
     [SerializeField] GameObject finsher;
+    public InteractionAudio interactionAudio;
     public CinemachineCamera activeCam;
     public void MonsterSmash()
     {
@@ -19,6 +20,7 @@ public class lever : MonoBehaviour
         chandelier3.SetActive(true);
         monster1.SetActive(false);
         monster2.SetActive(true);
+        interactionAudio.CrashSoundTimerCorutine();
         StartCoroutine(CamFocusCorutine());
         finsher.SetActive(true);
     }

@@ -5,6 +5,7 @@ public class BookLockedStatus : MonoBehaviour, IDataPersistence
     [SerializeField] private string id;
     [SerializeField] doorBookcase _door1;
     [SerializeField] HUDManager _hud;
+    public InteractionAudio interactionAudio;
     public bool unlocked = false;
     public bool opened = false;
     public string whileLocked;
@@ -23,6 +24,7 @@ public class BookLockedStatus : MonoBehaviour, IDataPersistence
             {
                 _hud.interactText = whenOpening;
                 _hud.UpdateInteractText();
+                AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[5], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume);
                 _door1.Open1();
                 opened = true;
             } else
@@ -32,6 +34,7 @@ public class BookLockedStatus : MonoBehaviour, IDataPersistence
             }
         } else
         {
+            AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[0], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume);
             _hud.interactText = whileLocked;
             _hud.UpdateInteractText();
         }
