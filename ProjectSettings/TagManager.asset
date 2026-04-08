@@ -9,6 +9,7 @@ TagManager:
   - monster
   - SaveObject
   - Note
+  - NoteGFC
   layers:
   - Default
   - TransparentFX
