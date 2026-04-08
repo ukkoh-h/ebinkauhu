@@ -15,6 +15,7 @@ public class roomTrigger : MonoBehaviour
     public lockedStatus door3;
     public bool visibility;
     public bool desapawnMonster;
+    public bool safeRoom;
     public bool respawnMonster;
     public bool spawnBehindWall;
     public bool finalScene;
@@ -26,6 +27,7 @@ public class roomTrigger : MonoBehaviour
             if (!visibility) monster2.cantSee = true;
             if (desapawnMonster) 
             {
+                if (safeRoom)monster2.MusicSafeRoom();
                 monster1.SetActive(false);
             }
             if (spawnBehindWall)
