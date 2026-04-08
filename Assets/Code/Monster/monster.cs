@@ -227,7 +227,7 @@ public class monster : MonoBehaviour
         //Invoke("Stun", 2f);
         if (MonsterAudioClips.Length > 0)
             {
-                var index = Random.Range(6, 9);
+                var index = Random.Range(11, 12);
                 AudioSource.PlayClipAtPoint(MonsterAudioClips[index], transform.TransformPoint(this.transform.position), MonsterAudioVolume);
             }
     }
@@ -312,6 +312,11 @@ public class monster : MonoBehaviour
         if (!alreadyAttacked)
         {
             _animator.Play("Attack", 0, 0.25f);
+            if (MonsterAudioClips.Length > 0)
+            {
+                var index = Random.Range(13, 14);
+                AudioSource.PlayClipAtPoint(MonsterAudioClips[index], transform.TransformPoint(this.transform.position), MonsterAudioVolume);
+            }
             swinger.Swing();
             transform.LookAt(player.position);
             alreadyAttacked = true;
