@@ -117,7 +117,7 @@ public class HUDManager : MonoBehaviour
 
     private IEnumerator TextTimerCorutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         text_interact.text = $"";
     }
 }
