@@ -1,5 +1,6 @@
 //using System.Threading.Tasks.Dataflow;
 using UnityEngine;
+using System.Collections;
 
 public class roomTrigger : MonoBehaviour
 {
@@ -27,14 +28,15 @@ public class roomTrigger : MonoBehaviour
             if (!visibility) monster2.cantSee = true;
             if (desapawnMonster) 
             {
-                if (safeRoom)monster2.MusicSafeRoom();
+                if (safeRoom){monster2.MusicSafeRoom();}
+                else {monster2.MusicAmbient();}
                 monster1.SetActive(false);
             }
             if (spawnBehindWall)
             {
                 monster2.SpawnMonsterBehindWall();
                 monster1.SetActive(true);
-                interactionAudio.CrashSoundTimerCorutine();
+                StartCoroutine(CrashCorutine());
                 piece.Despawn();
                 spawnBehindWall = false;
             }
@@ -62,5 +64,10 @@ public class roomTrigger : MonoBehaviour
                 door3.locked1 = true;
             }
         }
+    }
+        private IEnumerator CrashCorutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[12], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume * 2);
     }
 }
