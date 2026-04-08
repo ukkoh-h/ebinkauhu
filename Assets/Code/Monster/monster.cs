@@ -40,6 +40,7 @@ public class monster : MonoBehaviour
     public float walkPointRange;
     public float patrolSpeed;
     public float chaseSpeed;
+    public float stunned;
     public float timeBetweenAttacks;
     public float sightRange;
     public float hearingRange;
@@ -163,6 +164,10 @@ public class monster : MonoBehaviour
             //    ChasePlayer();
             //}
         }
+        else
+        {
+            navAgent.speed = stunned;
+        } 
         
     }
     void MonsterFootstep()
