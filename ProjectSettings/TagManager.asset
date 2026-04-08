@@ -7,6 +7,8 @@ TagManager:
   - CinemachineTarget
   - WorldObjectHolder
   - monster
+  - SaveObject
+  - Note
   layers:
   - Default
   - TransparentFX

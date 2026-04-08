@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
     private InputAction menu;
 
     [SerializeField] private GameObject pauseUI;
+    [SerializeField] private GameObject saveUI;
     [SerializeField] private bool isPaused;
 
     void Awake()
@@ -23,6 +24,7 @@ public class PauseMenu : MonoBehaviour
     }
     private void OnDisable()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         menu.Disable();
     }
 
@@ -52,6 +54,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         AudioListener.pause = false;
         pauseUI.SetActive(false);
+        saveUI.SetActive(false);
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
     }

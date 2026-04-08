@@ -64,6 +64,9 @@ namespace StarterAssets
         public float SpeedChangeRate = 10.0f;
         public AudioClip[] FootstepAudioClips;
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
+
+         public bool stepAudioPlaying;
+         public float stepAudioSpeed;
         
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
         public float Gravity = -15.0f;
@@ -140,6 +143,7 @@ namespace StarterAssets
             qt = _playerInput.actions.FindAction("Quickturn");
             aim = _playerInput.actions.FindAction("Aim");
             _animator.SetBool("IsAiming", false);
+            stepAudioPlaying = false;
         
         }
 
@@ -206,7 +210,7 @@ namespace StarterAssets
                 targetSpeed = MoveAimSpeed;
                 targetTurnSpeed = turnAimSpeed;
                 _animator.SetBool("IsAiming", true);
-                Invoke("Activate", 0.8f);
+                Invoke("Activate", 0.4f);
             }
             else
             {
@@ -294,14 +298,26 @@ namespace StarterAssets
                 else{
                     
                 } */
-                if (_input.sprint) _animationBlend = 5.335f; else _animationBlend = 2.0f;
+                if (_input.sprint)
+                {
+                    _animationBlend = 5.335f;
+                    stepAudioSpeed = 0.5f;
+                }
+                else
+                {
+                    _animationBlend = 2.0f;
+                    stepAudioSpeed = 0.7f;
+                }
+                 
                 if (inputVertical == 0) 
                 {
                     if (_input.move == Vector2.zero) 
                     {
                         _animationBlend = 0f;
+                        stepAudioSpeed = 0f;
                     } else {
                         _animationBlend = 2f;
+                        stepAudioSpeed = 0.7f;
                     }
 
                     
@@ -313,6 +329,7 @@ namespace StarterAssets
             if (_input.move == Vector2.down || _input.sprint && inputVertical < 0 || inputHorizontal != 0 && inputVertical < 0 ) 
             {
                 _animationBlend = 1.75f;
+                stepAudioSpeed = 0.5f;
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
@@ -326,6 +343,15 @@ namespace StarterAssets
                 Vector3 movDir = transform.forward * inputVertical * targetSpeed;
                 
                 _controller.Move(movDir * Time.deltaTime - Vector3.up * 0.1f);
+                if(!stepAudioPlaying) 
+                {
+                    if(stepAudioSpeed != 0)
+                    {
+                        stepAudioPlaying = true;
+                        Invoke("FootstepAudio", stepAudioSpeed);
+                    }
+                    
+                }
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
 
@@ -346,6 +372,15 @@ namespace StarterAssets
                 }
         }
 
+        void FootstepAudio()
+        {
+            if (FootstepAudioClips.Length > 0)
+            {
+                var index = Random.Range(0, 5);
+                AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(this.transform.position), FootstepAudioVolume);
+            }
+            stepAudioPlaying = false;
+        }
         void Activate()
         {
             _weapon.SetActive(true);

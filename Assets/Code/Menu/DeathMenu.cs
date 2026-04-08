@@ -9,6 +9,7 @@ public class DeathMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         DataPersistenceManager.instance.LoadGame();
         SceneManager.LoadSceneAsync(1);
+        AudioListener.pause = false;
     }
     public void QuitToMainMenu()
     {

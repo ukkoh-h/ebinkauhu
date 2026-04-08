@@ -11,12 +11,16 @@ public class MainMenu : MonoBehaviour
 
     public void OnLoadGameClicked()
     {
-        DataPersistenceManager.instance.LoadGame();
         SceneManager.LoadSceneAsync(1);
+        DataPersistenceManager.instance.LoadGame();
+        Cursor.lockState = CursorLockMode.Locked;
+        
     }
     public void OnNewGameClicked()
     {
-        DataPersistenceManager.instance.NewGame();
         SceneManager.LoadSceneAsync(1);
+        DataPersistenceManager.instance.NewGame();
+        Cursor.lockState = CursorLockMode.Locked;
+        
     }
 }

@@ -82,6 +82,7 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
         heal = _playerInput.actions.FindAction("Heal");
         _playerInput.enabled = true;
         fade_menu.SetBool("Start", false);
+        AudioListener.pause = false;
     }
     
 
@@ -185,7 +186,7 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
                 {
                     fade_menu.SetBool("Start", true);
                 }
-                Invoke("Death", 4f);
+                Invoke("Death", 5f);
             }
     }
     void Death()

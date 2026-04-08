@@ -20,14 +20,14 @@ public class monster : MonoBehaviour
 
     public AudioClip[] MonsterAudioClips;
     [Range(0, 1)] public float MonsterAudioVolume = 0.5f;
+    public bool stepAudioPlaying;
+    public bool monsterAmbientPlaying;
 
-    //private float _animationBlend;
-
-    //private int _animIDSpeed;
-    //private int _animIDMotionSpeed;
-
-    //private Animator _animator;
-    //private bool _hasAnimator;
+    private float _animationBlend;
+    private int _animIDSpeed;
+    private int _animIDMotionSpeed;
+    private Animator _animator;
+    private bool _hasAnimator;
 
     public Swinger swinger;
     public NavMeshAgent navAgent;
@@ -61,24 +61,27 @@ public class monster : MonoBehaviour
 
     private void Awake()
     {
-        //animator = GetComponent<Animator>();
         player = GameObject.Find("Player").transform;
         navAgent = GetComponent<NavMeshAgent>();
         alreadyAttacked = false;
+        playerSeen = false;
+        playerHeared = false;
+        stepAudioPlaying = false;
+        monsterAmbientPlaying = false;
         
     }
 
     private void Start()
     {
-        //_hasAnimator = TryGetComponent(out _animator);
-        //AssignAnimationIDs();
+        _hasAnimator = TryGetComponent(out _animator);
+        AssignAnimationIDs();
         
     }
 
     private void Update()
     {
         MonsterHealth();
-        //_hasAnimator = TryGetComponent(out _animator);
+        _hasAnimator = TryGetComponent(out _animator);
 
         bool playerInHearingRange = Physics.CheckSphere(transform.position, hearingRange, playerLayer);
         bool playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
@@ -92,6 +95,11 @@ public class monster : MonoBehaviour
             if (playerInSightRange && !cantSee)
             {
                 playerSeen = true;
+                if(!monsterAmbientPlaying) 
+                {
+                    monsterAmbientPlaying = true;
+                    Invoke("MonsterAmbientAudio", 10f);
+                }
             }
             else
             {
@@ -104,17 +112,41 @@ public class monster : MonoBehaviour
             {
                 Patroling();
                 navAgent.speed = patrolSpeed;
+                if(!stepAudioPlaying) 
+                {
+                    stepAudioPlaying = true;
+                    Invoke("MonsterFootstep", 1f);
+                }
+                if(!monsterAmbientPlaying) 
+                {
+                    monsterAmbientPlaying = true;
+                    Invoke("MonsterAmbientAudio", 30f);
+                }
+                
+                _animator.SetFloat("Speed", 2f);
 
             }
             else if (!playerSeen && !playerInAttackRange && playerHeared)
             {
                 NavLastHeard();
                 navAgent.speed = chaseSpeed;
+                if(!stepAudioPlaying) 
+                {
+                    stepAudioPlaying = true;
+                    Invoke("MonsterFootstep", 0.6f);
+                }
+                _animator.SetFloat("Speed", 5f);
             }
             else  if (playerSeen && !playerInAttackRange)
             {
                 ChasePlayer();
                 navAgent.speed = chaseSpeed;
+                if(!stepAudioPlaying) 
+                {
+                    stepAudioPlaying = true;
+                    Invoke("MonsterFootstep", 0.6f);
+                }
+                _animator.SetFloat("Speed", 5f);
             }
             else if (playerInAttackRange && playerSeen)
             {
@@ -127,11 +159,29 @@ public class monster : MonoBehaviour
         }
         
     }
-    /* private void AssignAnimationIDs()
+    void MonsterFootstep()
+    {
+        if (MonsterAudioClips.Length > 0)
+        {
+            var index = Random.Range(0, 5);
+            AudioSource.PlayClipAtPoint(MonsterAudioClips[index], transform.TransformPoint(this.transform.position), MonsterAudioVolume);
+        }
+        stepAudioPlaying = false;
+    }
+    void MonsterAmbientAudio()
+    {
+        if (MonsterAudioClips.Length > 0)
+        {
+            var index = Random.Range(6, 9);
+            AudioSource.PlayClipAtPoint(MonsterAudioClips[index], transform.TransformPoint(this.transform.position), MonsterAudioVolume);
+        }
+        monsterAmbientPlaying = true;
+    }
+    private void AssignAnimationIDs()
     {
         _animIDSpeed = Animator.StringToHash("Speed");
         _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
-    } */
+    }
 
     private void MonsterHealth() 
     {
@@ -140,6 +190,7 @@ public class monster : MonoBehaviour
             if(hitOnce == false) 
             {
                 OnHit();
+                _animator.Play("Stunned", 0, 0.25f);
                 hitOnce = true;
             }
         }
@@ -149,6 +200,7 @@ public class monster : MonoBehaviour
             if(hitTwice == false) 
             {
                 OnHit();
+                _animator.Play("Stunned", 0, 0.25f);
                 hitTwice = true;
             }
         }
@@ -156,6 +208,7 @@ public class monster : MonoBehaviour
         if(health <= 0 && disable == false)
         {
             if (MonsterAudioClips.Length > 0) OnHit();
+            _animator.Play("Stunned", 0, 0.25f);
 
             disable = true;
             Invoke("Activate", cooldown);
@@ -164,12 +217,18 @@ public class monster : MonoBehaviour
 
     private void OnHit()
     {
+        //navAgent.speed = 0;
+        //Invoke("Stun", 2f);
         if (MonsterAudioClips.Length > 0)
             {
-                var index = Random.Range(0, MonsterAudioClips.Length);
+                var index = Random.Range(6, 9);
                 AudioSource.PlayClipAtPoint(MonsterAudioClips[index], transform.TransformPoint(this.transform.position), MonsterAudioVolume);
             }
     }
+    /* void Stun()
+    {
+        navAgent.speed = chaseSpeed;
+    } */
 
     void Activate()
     {
@@ -246,6 +305,7 @@ public class monster : MonoBehaviour
 
         if (!alreadyAttacked)
         {
+            _animator.Play("Attack", 0, 0.25f);
             swinger.Swing();
             transform.LookAt(player.position);
             alreadyAttacked = true;
