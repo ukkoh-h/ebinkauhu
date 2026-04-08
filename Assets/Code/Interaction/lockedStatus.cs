@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class lockedStatus : MonoBehaviour, IDataPersistence
@@ -7,12 +8,21 @@ public class lockedStatus : MonoBehaviour, IDataPersistence
     [SerializeField] door2 _door2;
     [SerializeField] lockedInteractable _lockedInt;
     [SerializeField] HUDManager _hud;
+    public monster monster;
+    public InteractionAudio interactionAudio;
     public lever lever;
     public bool locked1 = false;
     public bool locked2 = false;
     public bool locked3 = false;
     public bool lockedForPlayer = false;
     public bool isLever = false;
+    public bool isPaper;
+    public bool isDoor;
+    public bool isClock;
+    public bool isDisck;
+    public bool isBookcaseDoor;
+    public bool isChemistry;
+    public bool isButton;
     bool firstTime = false;
     public bool unlocked = false;
     public string whileLocked;
@@ -47,6 +57,18 @@ public class lockedStatus : MonoBehaviour, IDataPersistence
                 _door2?.Open2();
                 _lockedInt?.Interact();
                 firstTime = true;
+                if (isDoor) AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[3], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume);
+                if (isClock)
+                {
+                    AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[4], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume);
+                    monster.MakeNoise();
+                }
+                if (isPaper) AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[10], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume);
+                if (isDisck) AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[7], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume);
+                if (isBookcaseDoor) AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[5], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume);
+                if (isChemistry) AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[8], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume);
+                if (isButton) AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[9], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume);
+
             }
             else if (!locked1 && !locked2 && !locked3 && firstTime)
             {
@@ -60,6 +82,7 @@ public class lockedStatus : MonoBehaviour, IDataPersistence
             {
                 _hud.interactText = whileLocked;
                 _hud.UpdateInteractText();
+                if (isDoor) AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[0], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume);
                 //Debug.Log("IT'S LOCKED!");
             }
         } 

@@ -22,6 +22,9 @@ public class Interactor : MonoBehaviour
     [SerializeField] GameObject saveMenu;
     [SerializeField] GameObject note;
 
+    //[SerializeField] GameObject GFC;
+    //AudioSource attachedAudioSource;
+
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -29,6 +32,8 @@ public class Interactor : MonoBehaviour
         text_interact.text = $"";
         note.SetActive(false);
         saveMenu.SetActive(false);
+
+        //attachedAudioSource = GFC.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -55,6 +60,28 @@ public class Interactor : MonoBehaviour
                         Invoke("Activate_Note", 0.2f);
                         interactObj.Interact();
                     }
+                    /* if (hitInfo.collider.gameObject.CompareTag("NoteGFC"))
+                    {
+                        vampyr.Play("Interact", 0, 0.25f);
+                        _playerInput.enabled = false;
+                        if (GFC.activeSelf && !attachedAudioSource.isPlaying)
+                        {
+                            GFC.SetActive(false);
+                        }
+                        else if (!GFC.activeSelf)
+                        {
+                            GFC.SetActive(true);
+                            if (!attachedAudioSource.isPlaying)
+                            {
+                                attachedAudioSource.loop = false;
+                                attachedAudioSource.Play();
+                            }                
+                        }
+                        Invoke("Activate", 3f);
+                        interactObj.Interact();
+                    } */
+
+
                     else
                     {
                         interactObj.Interact();
@@ -74,11 +101,11 @@ public class Interactor : MonoBehaviour
             {
                 text_interact.text = $"Press E to interact";
             }
-            else if(other.gameObject.CompareTag("SaveObject"))
+            if(other.gameObject.CompareTag("SaveObject"))
             {
                 text_interact.text = $"Press E to interact";
             }
-            else if(other.gameObject.CompareTag("Note"))
+            if(other.gameObject.CompareTag("Note"))
             {
                 text_interact.text = $"Press E to interact";
             }
@@ -103,10 +130,14 @@ public class Interactor : MonoBehaviour
             }
         }
     }
-    void Activate()
+    void Deactivate()
     {
         _playerInput.enabled = true;
         note.SetActive(false);
+    }
+    void Activate()
+    {
+        _playerInput.enabled = true;
     }
     void Activate_Menu()
     {
@@ -126,6 +157,6 @@ public class Interactor : MonoBehaviour
     {
         noteAnimator.Play("Note_anim_close", 0, 0.25f);
         Cursor.lockState = CursorLockMode.Locked;
-        Invoke("Activate", 0.2f);
+        Invoke("Deactivate", 0.2f);
     }
 }

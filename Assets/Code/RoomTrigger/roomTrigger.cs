@@ -7,6 +7,7 @@ public class roomTrigger : MonoBehaviour
     [SerializeField] GameObject monster1;
     [SerializeField] GameObject respawner;
     [SerializeField] GameObject fallZone;
+    public InteractionAudio interactionAudio;
     public Despawner piece;
     public monster monster2;
     public lockedStatus door1;
