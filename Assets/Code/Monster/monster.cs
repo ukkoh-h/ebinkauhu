@@ -9,6 +9,9 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class monster : MonoBehaviour
 {
+    [SerializeField] GameObject music1;
+    [SerializeField] GameObject music2;
+    [SerializeField] GameObject music3;
     // Joni Koodi
     public float health = 15;
     public float maxHealth = 15;
@@ -111,6 +114,7 @@ public class monster : MonoBehaviour
             if (!playerSeen && !playerInAttackRange && !playerHeared)
             {
                 Patroling();
+                MusicAmbient();
                 navAgent.speed = patrolSpeed;
                 if(!stepAudioPlaying) 
                 {
@@ -129,6 +133,7 @@ public class monster : MonoBehaviour
             else if (!playerSeen && !playerInAttackRange && playerHeared)
             {
                 NavLastHeard();
+                MusicChase();
                 navAgent.speed = chaseSpeed;
                 if(!stepAudioPlaying) 
                 {
@@ -140,6 +145,7 @@ public class monster : MonoBehaviour
             else  if (playerSeen && !playerInAttackRange)
             {
                 ChasePlayer();
+                MusicChase();
                 navAgent.speed = chaseSpeed;
                 if(!stepAudioPlaying) 
                 {
@@ -351,6 +357,24 @@ public class monster : MonoBehaviour
     public void PlaceForFinalFight()
     {
         transform.position = new Vector3(-1, 0, -3);
+    }
+    public void MusicAmbient()
+    {
+        music1.SetActive(true);
+        music2.SetActive(false);
+        music3.SetActive(false);
+    }
+    public void MusicChase()
+    {
+        music1.SetActive(false);
+        music2.SetActive(false);
+        music3.SetActive(true);
+    }
+    public void MusicSafeRoom()
+    {
+        music1.SetActive(false);
+        music2.SetActive(true);
+        music3.SetActive(false);
     }
 
     /*public void TakeDamage(float damage)

@@ -88,6 +88,7 @@ public class lockedStatus : MonoBehaviour, IDataPersistence
         } 
         else if (isLever && !locked1)
         {
+            AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[6], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume);
             lever.MonsterSmash();
         }
         else if (isLever && locked1)
