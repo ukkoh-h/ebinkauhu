@@ -20,15 +20,20 @@ public class lever : MonoBehaviour
         chandelier3.SetActive(true);
         monster1.SetActive(false);
         monster2.SetActive(true);
-        interactionAudio.CrashSoundTimerCorutine();
+        StartCoroutine(CrashCorutine());
         StartCoroutine(CamFocusCorutine());
         finsher.SetActive(true);
     }
 
-        private IEnumerator CamFocusCorutine()
+    private IEnumerator CamFocusCorutine()
     {
         yield return new WaitForSeconds(1f);
         chandelier2.SetActive(false);
         activeCam.Priority = 0;
+    }
+    private IEnumerator CrashCorutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[12], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume * 2);
     }
 }
