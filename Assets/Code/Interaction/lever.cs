@@ -10,6 +10,7 @@ public class lever : MonoBehaviour
     [SerializeField] GameObject monster1;
     [SerializeField] GameObject monster2;
     [SerializeField] GameObject finsher;
+    [SerializeField] GameObject Crash2;
     public InteractionAudio interactionAudio;
     public CinemachineCamera activeCam;
     public void MonsterSmash()
@@ -34,6 +35,6 @@ public class lever : MonoBehaviour
     private IEnumerator CrashCorutine()
     {
         yield return new WaitForSeconds(0.5f);
-        AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[12], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume * 2);
+        Crash2.SetActive(true);
     }
 }

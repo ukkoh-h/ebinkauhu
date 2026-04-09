@@ -8,6 +8,7 @@ public class roomTrigger : MonoBehaviour
     [SerializeField] GameObject monster1;
     [SerializeField] GameObject respawner;
     [SerializeField] GameObject fallZone;
+    [SerializeField] GameObject DoorCrash;
     public InteractionAudio interactionAudio;
     public Despawner piece;
     public monster monster2;
@@ -68,6 +69,6 @@ public class roomTrigger : MonoBehaviour
         private IEnumerator CrashCorutine()
     {
         yield return new WaitForSeconds(0.5f);
-        AudioSource.PlayClipAtPoint(interactionAudio.InteractionAudioClips[12], transform.TransformPoint(this.transform.position), interactionAudio.InteractionAudioVolume * 2);
+        DoorCrash.SetActive(true);
     }
 }

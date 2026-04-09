@@ -91,7 +91,6 @@ public class monster : MonoBehaviour
         bool playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
-        if(!disable) {
             
             //Debug.Log(walkPointSet);
 
@@ -111,8 +110,12 @@ public class monster : MonoBehaviour
             }
             /*if (playerHeared && playerInSightRange) {playerHeared = false;}
             if (playerInSightRange) {Debug.Log("I SEE YOU!");}*/
-            
-            if (!playerSeen && !playerInAttackRange && !playerHeared)
+            if (disable)
+            {
+                navAgent.speed = stunned;
+                _animator.SetFloat("Speed", 0f);
+            }
+            else if (!playerSeen && !playerInAttackRange && !playerHeared)
             {
                 Patroling();
                 MusicAmbient();
@@ -163,11 +166,7 @@ public class monster : MonoBehaviour
             //{
             //    ChasePlayer();
             //}
-        }
-        else
-        {
-            navAgent.speed = stunned;
-        } 
+
         
     }
     void MonsterFootstep()
@@ -274,7 +273,8 @@ public class monster : MonoBehaviour
     {
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
-        walkPoint = new Vector3(player.position.x + randomX, player.position.y + 1, player.position.z + randomZ);
+        walkPoint = new Vector3(player.position.x + randomX, transform.position.y, player.position.z + randomZ);
+        //UnityEngine.Debug.Log(walkPoint);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, groundLayer))
         {

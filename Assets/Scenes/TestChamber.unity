@@ -234,6 +234,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractorSource: {fileID: 182817729}
   InteractRange: 1
+  vampyr: {fileID: 0}
+  noteAnimator: {fileID: 0}
+  text_interact: {fileID: 0}
+  saveMenu: {fileID: 0}
+  note: {fileID: 0}
 --- !u!1 &222655885
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +425,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 609f0165795437b4aa7bb71669d1afa2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1260,7 +1265,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 609f0165795437b4aa7bb71669d1afa2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1731,7 +1736,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 609f0165795437b4aa7bb71669d1afa2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2537,6 +2542,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5597113867290821413, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 609f0165795437b4aa7bb71669d1afa2, type: 2}
+    - target: {fileID: 5597113867290821413, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 609f0165795437b4aa7bb71669d1afa2, type: 2}
+    - target: {fileID: 5597113867290821413, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 609f0165795437b4aa7bb71669d1afa2, type: 2}
     - target: {fileID: 5653482252439368515, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -3315,12 +3332,21 @@ MonoBehaviour:
   _door2: {fileID: 0}
   _lockedInt: {fileID: 0}
   _hud: {fileID: 0}
+  monster: {fileID: 0}
+  interactionAudio: {fileID: 0}
   lever: {fileID: 0}
   locked1: 0
   locked2: 0
   locked3: 0
   lockedForPlayer: 1
   isLever: 0
+  isPaper: 0
+  isDoor: 0
+  isClock: 0
+  isDisck: 0
+  isBookcaseDoor: 0
+  isChemistry: 0
+  isButton: 0
   unlocked: 0
   whileLocked: 
   whileUnlocked: 
@@ -3338,6 +3364,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8319449fa21552f469d013232d2ea5ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle1: {fileID: 0}
+  particle2: {fileID: 0}
+  interactionAudio: {fileID: 0}
   openSpeedMultiplier: 2
   doorOpenAngle: 90
 --- !u!1 &1737859036
@@ -3393,12 +3422,21 @@ MonoBehaviour:
   _door2: {fileID: 0}
   _lockedInt: {fileID: 0}
   _hud: {fileID: 0}
+  monster: {fileID: 0}
+  interactionAudio: {fileID: 0}
   lever: {fileID: 0}
   locked1: 1
   locked2: 0
   locked3: 0
   lockedForPlayer: 1
   isLever: 0
+  isPaper: 0
+  isDoor: 0
+  isClock: 0
+  isDisck: 0
+  isBookcaseDoor: 0
+  isChemistry: 0
+  isButton: 0
   unlocked: 0
   whileLocked: 
   whileUnlocked: 
@@ -3416,6 +3454,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8319449fa21552f469d013232d2ea5ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle1: {fileID: 0}
+  particle2: {fileID: 0}
+  interactionAudio: {fileID: 0}
   openSpeedMultiplier: 2
   doorOpenAngle: 90
 --- !u!1 &1857161601
@@ -13704,6 +13745,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 5341014505385190154, guid: b08ce912a97934a45b75f7bd9cca90eb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 609f0165795437b4aa7bb71669d1afa2, type: 2}
     - target: {fileID: 7089856260053820828, guid: b08ce912a97934a45b75f7bd9cca90eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.63
