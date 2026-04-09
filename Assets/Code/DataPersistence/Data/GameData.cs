@@ -43,9 +43,9 @@ public class GameData
 
     public GameData()
     {
-        this.ammoPool = 35;
+        this.ammoPool = 120;
         this.ammoLeft = 5;
-        this.healthItemPool = 5;
+        this.healthItemPool = 45;
         this.playerHealth = 6;
         
         //Laitetaan halutut aloitus koordinaatit tilalle sit
